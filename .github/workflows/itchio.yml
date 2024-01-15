@@ -19,13 +19,13 @@ jobs:
       fail-fast: false
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Create LFS file list
         run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
 
       - name: Restore LFS cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: lfs-cache
         with:
           path: .git/lfs
@@ -38,7 +38,7 @@ jobs:
           git reset --hard
 
       - name: Restore Library cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: Library
           key: Library-build-WebGL
@@ -47,6 +47,10 @@ jobs:
             Library-
 
       - uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: WebGL
 
@@ -54,14 +58,6 @@ jobs:
         with:
           name: build-WebGL
           path: build/WebGL
-
-      - uses: actions/cache@v3
-        with:
-          path: Library
-          key: Library-WanderKingPrototype-WebGL
-          restore-keys: |
-            Library-WanderKingPrototype-
-            Library-
 
   deployItchIo:
     name: Upload to Itch
