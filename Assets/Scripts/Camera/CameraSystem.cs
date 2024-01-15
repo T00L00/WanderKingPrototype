@@ -8,16 +8,17 @@ namespace TooLoo.Cameras
     public class CameraSystem : MonoBehaviour
     {
         [SerializeField] private CinemachineVirtualCamera virtualCam;
+        [SerializeField] private Transform followTarget;
 
         [Header("Options")]
         [SerializeField] private bool useEdgeScrolling = false;
         [SerializeField] private bool useDragPan = false;
-        [SerializeField] private bool useZoom = true;
-        [SerializeField] private bool useRotation = true;
-        [SerializeField] private bool useForwardMove = true;
-        [SerializeField] private bool useBackwardMove = true;
-        [SerializeField] private bool useLeftMove = true;
-        [SerializeField] private bool useRightMove = true;
+        [SerializeField] private bool useZoom = false;
+        [SerializeField] private bool useRotation = false;
+        [SerializeField] private bool useForwardMove = false;
+        [SerializeField] private bool useBackwardMove = false;
+        [SerializeField] private bool useLeftMove = false;
+        [SerializeField] private bool useRightMove = false;
 
         [Header("General Settings")]
         [SerializeField] private float moveSpeed = 50f;
@@ -45,6 +46,17 @@ namespace TooLoo.Cameras
         private Vector3 followOffset;
 
         private CinemachineTransposer cmTransposer;
+
+        private void OnValidate()
+        {
+            if (followTarget != null)
+            {
+                useForwardMove = false;
+                useBackwardMove = false;
+                useLeftMove = false;
+                useRightMove = false;
+            }
+        }
 
         private void Awake()
         {
@@ -86,6 +98,12 @@ namespace TooLoo.Cameras
 
         public void HandleCameraMovement()
         {
+            if (followTarget != null)
+            {
+                transform.position = followTarget.position;
+                return;
+            }
+
             Vector3 inputDir = Vector3.zero;
 
             if (useForwardMove)
