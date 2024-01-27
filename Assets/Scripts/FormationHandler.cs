@@ -4,11 +4,12 @@ using UnityEngine;
 
 namespace WK
 {
-    public class Formation : MonoBehaviour
+    public class FormationHandler : MonoBehaviour
     {
-        [SerializeField] private Transform followTarget;
-        [SerializeField] private float followDistance = 3f;
+        [SerializeField] private Leader leader;
+        [SerializeField] private FollowerAI followerPrefab;
 
+        [SerializeField] private float followDistance = 3f;
         [Range(0, 1)]
         [SerializeField] private float noise = 0;
         [SerializeField] private float spread = 1;
@@ -17,19 +18,41 @@ namespace WK
         [SerializeField] private float nthOffset = 0;
         [SerializeField] private bool hollow = false;
         [SerializeField] private bool debug = true;
-        [SerializeField] private FollowerAI[] followers;
 
+        private List<FollowerAI> followers;
         private List<Vector3> positions;
+
+        public void Init()
+        {
+            if (leader.FollowerCount == 0) return;
+
+            followers = new();
+            GameObject followerParent = Instantiate<GameObject>(new GameObject());
+            followerParent.transform.position = Vector3.zero;
+
+            for (int i = 0; i < leader.FollowerCount; i++)
+            {                
+                FollowerAI follower = Instantiate(followerPrefab, followerParent.transform);
+                followers.Add(follower);
+            }
+        }
+
+        private void Start()
+        {
+            Init();
+        }
 
         private void Update()
         {
+            if (followers?.Count == 0) return; 
+
             positions = GeneratePositions();
             UpdateFollowerPositions();
         }
 
         public void UpdateFollowerPositions()
         {
-            for (int i = 0; i < followers.Length; i++)
+            for (int i = 0; i < followers.Count; i++)
             {
                 followers[i]?.Follow(positions[i]);
             }
@@ -57,7 +80,7 @@ namespace WK
                     pos += GetNoise(pos);
                     pos *= spread;
 
-                    pos = followTarget.TransformPoint(pos);
+                    pos = transform.TransformPoint(pos);
                     positions.Add(pos);
                 }
             }
