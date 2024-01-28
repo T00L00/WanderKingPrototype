@@ -8,7 +8,8 @@ namespace WK
         [SerializeField] private Camera cam;
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private DirectionalMoveInputController moveController;
-
+        [SerializeField] private AimingController aimingController;
+        
         private PlayerControls playerControls;
         private Vector2 cursorPosition;
         private Vector2 cursorDirection;
@@ -38,6 +39,7 @@ namespace WK
             {
                 moveController.Move(moveDirection);
             }
+            aimingController.SetAimPosition(cursorPosition);
         }
         
         public void OnMovementDirection(InputAction.CallbackContext context)
@@ -53,10 +55,10 @@ namespace WK
         {
             if (context.started)
             {
-                HandleEnterAimMode?.Invoke(this, new EventAimModeArgs());
+                aimingController.EnableAimMode();
             } else if (context.canceled)
             {
-                HandleExitAimMode?.Invoke(this, new EventAimModeArgs());
+                aimingController.DisableAimMode();
             }
         }
 

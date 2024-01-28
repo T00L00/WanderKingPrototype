@@ -7,10 +7,6 @@ namespace WK {
     public static EventHandler<EventNextUnitArgs> HandleNextUnit;
     public class EventNextUnitArgs : EventArgs { }
 
-    public static EventHandler<EventAimModeArgs> HandleEnterAimMode;
-    public static EventHandler<EventAimModeArgs> HandleExitAimMode;
-    public class EventAimModeArgs : EventArgs {
-            
-    }
+    
   }
 }

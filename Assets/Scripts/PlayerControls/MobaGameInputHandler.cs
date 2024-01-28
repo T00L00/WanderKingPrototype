@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,7 @@ namespace WK
         [SerializeField] private Camera cam;
         [SerializeField] private MoveController moveController;
         [SerializeField] private LayerMask groundLayer;
+        [SerializeField] private AimingController aimingController;
 
         private PlayerControls playerControls;
         private Vector2 cursorPosition;
@@ -27,6 +29,10 @@ namespace WK
         private void OnDisable()
         {
             playerControls.Disable();
+        }
+
+        private void Update() {
+            aimingController.SetAimPosition(cursorPosition);
         }
 
         public void OnMoveCommand(InputAction.CallbackContext context)
@@ -55,10 +61,10 @@ namespace WK
         {
             if (context.started)
             {
-                HandleEnterAimMode?.Invoke(this, new EventAimModeArgs());
+                aimingController.EnableAimMode();
             } else if (context.canceled)
             {
-                HandleExitAimMode?.Invoke(this, new EventAimModeArgs());
+                aimingController.DisableAimMode();
             }
         }
 
