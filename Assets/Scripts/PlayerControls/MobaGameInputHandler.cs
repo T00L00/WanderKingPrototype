@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace WK
 {
-    public class MobaGameInputHandler : GameplayInputHandler, PlayerControls.IMobaGameControlsActions
+    public class MobaGameInputHandler : MonoBehaviour, PlayerControls.IMobaGameControlsActions
     {
         [SerializeField] private Camera cam;
         [SerializeField] private MoveController moveController;
@@ -54,7 +53,6 @@ namespace WK
         {
             if (!context.performed) return;
             
-            HandleNextUnit?.Invoke(this, new EventNextUnitArgs());
         }
 
         public void OnAimMode(InputAction.CallbackContext context)

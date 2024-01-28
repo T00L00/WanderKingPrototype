@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace WK
 {
-    public class ActionGameInputHandler : GameplayInputHandler, PlayerControls.IActionGameControlsActions
+    public class ActionGameInputHandler : MonoBehaviour, PlayerControls.IActionGameControlsActions
     {
         [SerializeField] private Camera cam;
         [SerializeField] private LayerMask groundLayer;
@@ -71,7 +71,6 @@ namespace WK
         {
             if (!context.performed) return;
         
-            HandleNextUnit?.Invoke(this, new EventNextUnitArgs());
         }
 
         public void OnAimPosition(InputAction.CallbackContext context)
