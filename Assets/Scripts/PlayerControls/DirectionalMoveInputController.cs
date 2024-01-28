@@ -6,12 +6,13 @@ namespace WK {
     
     [SerializeField] private float speed = 1f;
     [SerializeField] private Transform directionTransform;
+    [SerializeField] private Transform movementTransform;
     
     private Vector3 lastDirection = Vector3.forward;
     
     public void Move(Vector3 moveDirection)
     {
-      transform.position += moveDirection * Time.deltaTime * speed;
+      movementTransform.position += moveDirection * Time.deltaTime * speed;
       lastDirection = moveDirection;
       UpdateDirection();
     }
