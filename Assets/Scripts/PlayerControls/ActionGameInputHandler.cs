@@ -34,7 +34,8 @@ namespace WK
         private void Update()
         {
             cursorPosition += cursorDirection * (Time.deltaTime * 10f);
-            if (isMoving) {
+            if (isMoving)
+            {
                 moveController.Move(moveDirection);
             }
         }

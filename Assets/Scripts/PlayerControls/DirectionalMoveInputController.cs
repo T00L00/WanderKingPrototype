@@ -5,10 +5,24 @@ namespace WK {
   {
     
     [SerializeField] private float speed = 1f;
-        
+    [SerializeField] private Transform directionTransform;
+    
+    private Vector3 lastDirection = Vector3.forward;
+    
     public void Move(Vector3 moveDirection)
     {
       transform.position += moveDirection * Time.deltaTime * speed;
+      lastDirection = moveDirection;
+      UpdateDirection();
+    }
+
+    public void UpdateDirection()
+    {
+      if (directionTransform == null) return;
+      if (lastDirection == Vector3.zero) return;
+      
+      Quaternion toRotation = Quaternion.LookRotation(lastDirection);
+      directionTransform.rotation = toRotation;
     }
   }
 }
