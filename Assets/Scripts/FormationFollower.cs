@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace WK
 {
-    public class FollowerAI : MonoBehaviour
+    public class FormationFollower : MonoBehaviour
     {
         [SerializeField] private MoveController mover;
 
