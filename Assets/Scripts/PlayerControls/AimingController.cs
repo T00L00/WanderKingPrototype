@@ -5,12 +5,9 @@ namespace WK {
     public class AimingController : MonoBehaviour
     {
       
-      public static EventHandler<EventAimModeArgs> OnEnterAimMode;
-      public static EventHandler<EventAimModeArgs> OnExitAimMode;
-      public class EventAimModeArgs : EventArgs {
-            
-      }
-      
+      public static Action OnEnterAimMode;
+      public static Action OnExitAimMode;
+   
       [SerializeField] private GameObject aimReticle;
       [SerializeField] private LayerMask layerMask;
       
@@ -20,14 +17,14 @@ namespace WK {
       {
         isAimModeEnabled = true;
         aimReticle.SetActive(true);
-        OnEnterAimMode?.Invoke(this, new EventAimModeArgs());
+        OnEnterAimMode?.Invoke();
       }
       
       public void DisableAimMode()
       {
         isAimModeEnabled = false;
         aimReticle.SetActive(false);
-        OnExitAimMode?.Invoke(this, new EventAimModeArgs());
+        OnExitAimMode?.Invoke();
       }
       
       public void SetAimPosition(Vector2 cursorPosition)
