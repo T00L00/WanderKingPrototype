@@ -52,6 +52,453 @@ namespace WK
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""ActionGameControls"",
+            ""id"": ""f10072ac-b108-4487-8693-b95ef05fcbc4"",
+            ""actions"": [
+                {
+                    ""name"": ""MovementDirection"",
+                    ""type"": ""Value"",
+                    ""id"": ""2efdcb4d-7038-45fa-b217-3810f074c837"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""AimMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""232e3672-ee7e-4a0c-a313-8c963c999234"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SecondaryAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""ec4f7efb-e309-4965-9bb1-4aa44b61f795"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextUnit"",
+                    ""type"": ""Button"",
+                    ""id"": ""c0ceb455-3050-4f4a-969d-bc05e3001872"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AimPosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""7013fe94-621c-4286-a090-b7853066a4ef"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""AimMovement"",
+                    ""type"": ""Value"",
+                    ""id"": ""0fce6c39-3778-4bcd-aac2-ebdfab8f9562"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""96c4f9b9-d2da-45cc-971a-c8cc388b3cf3"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementDirection"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""id"": ""22515560-e3e8-4b8f-ad13-12b69bbcc421"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Down"",
+                    ""id"": ""e2927832-ef9f-4d9a-9e0b-f9f9ee10cbd7"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Left"",
+                    ""id"": ""e4ffd811-a66f-49c5-8efc-550c75557fcf"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Right"",
+                    ""id"": ""8c9046d8-fdba-4edb-9578-94bf6369defd"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Arrows"",
+                    ""id"": ""3535fa39-4b5a-415e-acf7-e9d7d0fa4d9a"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementDirection"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""id"": ""1f853a96-2624-4c3b-ad31-795a86db3511"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Down"",
+                    ""id"": ""37fa8260-da18-4760-9365-caad7a208ee8"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Left"",
+                    ""id"": ""1a2e88fa-1783-4c16-9578-3025f048ee51"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Right"",
+                    ""id"": ""358eecbc-6693-4102-adb1-7d383c920e30"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad"",
+                    ""id"": ""dcf5e24e-34ee-48a4-8d5f-ba9898b0f06e"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementDirection"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""id"": ""44f4d355-87bb-4d69-a2f9-548a11a547ef"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Down"",
+                    ""id"": ""61e5be59-347c-4a8b-8ded-74f69ed7ed67"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Left"",
+                    ""id"": ""f022ea4c-84e7-49fe-beed-fe045f1b2659"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Right"",
+                    ""id"": ""ef049e4f-7fa1-4a74-b04f-0bacf2486595"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bdc02a3f-5b1e-4237-a65c-22026fea402c"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AimMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c88cb93d-d5ef-406a-8191-4b6173525805"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AimMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d3c109d8-ba15-425e-9513-f35df97efc56"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SecondaryAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c78e0cae-fce1-47e4-903f-28f2f8d5bfca"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SecondaryAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e7f75aaf-f083-4472-a567-89aa140afaef"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextUnit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a6580574-43cb-44c0-aa26-04911082c808"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextUnit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aa365061-8584-4776-aafd-d399ad1fc87b"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AimPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Gamepad"",
+                    ""id"": ""3e3ab609-863f-4fde-a7d6-aec32e8c8b4a"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AimMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""f8366b9b-8127-49ac-b3c2-e8710db42f03"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AimMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""dc91e749-af74-4513-af26-9c5b352a7b0a"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AimMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""c807c02c-485c-432c-a36e-76b1d1c0b2db"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AimMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""5cca2087-db98-415f-91c3-a06cdd4868ad"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AimMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
+        },
+        {
+            ""name"": ""MobaGameControls"",
+            ""id"": ""1355217d-0832-414f-9813-5c8c8407bf4d"",
+            ""actions"": [
+                {
+                    ""name"": ""MoveCommand"",
+                    ""type"": ""Button"",
+                    ""id"": ""8507f180-8029-4f36-a4fd-5258184616b3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextUnit"",
+                    ""type"": ""Button"",
+                    ""id"": ""f35b5b63-b02c-4ba3-8a61-a5df5a413284"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AimMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""5110a179-8360-4fef-8e6a-92c28e30556d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AimPosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""95614133-097d-4c4b-b27d-6c1986f76dd8"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ecc45320-e55b-489e-b305-fdbe50d79293"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveCommand"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6087c748-a55b-4ff7-a4cc-f1098c1f599a"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextUnit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""14d5d9a1-d6bd-4f2d-a247-6dfda089f1c1"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AimMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e42c4c4b-c815-4d6f-a27d-2d2d164c2b20"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AimPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -59,6 +506,20 @@ namespace WK
             // PC
             m_PC = asset.FindActionMap("PC", throwIfNotFound: true);
             m_PC_Move = m_PC.FindAction("Move", throwIfNotFound: true);
+            // ActionGameControls
+            m_ActionGameControls = asset.FindActionMap("ActionGameControls", throwIfNotFound: true);
+            m_ActionGameControls_MovementDirection = m_ActionGameControls.FindAction("MovementDirection", throwIfNotFound: true);
+            m_ActionGameControls_AimMode = m_ActionGameControls.FindAction("AimMode", throwIfNotFound: true);
+            m_ActionGameControls_SecondaryAction = m_ActionGameControls.FindAction("SecondaryAction", throwIfNotFound: true);
+            m_ActionGameControls_NextUnit = m_ActionGameControls.FindAction("NextUnit", throwIfNotFound: true);
+            m_ActionGameControls_AimPosition = m_ActionGameControls.FindAction("AimPosition", throwIfNotFound: true);
+            m_ActionGameControls_AimMovement = m_ActionGameControls.FindAction("AimMovement", throwIfNotFound: true);
+            // MobaGameControls
+            m_MobaGameControls = asset.FindActionMap("MobaGameControls", throwIfNotFound: true);
+            m_MobaGameControls_MoveCommand = m_MobaGameControls.FindAction("MoveCommand", throwIfNotFound: true);
+            m_MobaGameControls_NextUnit = m_MobaGameControls.FindAction("NextUnit", throwIfNotFound: true);
+            m_MobaGameControls_AimMode = m_MobaGameControls.FindAction("AimMode", throwIfNotFound: true);
+            m_MobaGameControls_AimPosition = m_MobaGameControls.FindAction("AimPosition", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -162,9 +623,181 @@ namespace WK
             }
         }
         public PCActions @PC => new PCActions(this);
+
+        // ActionGameControls
+        private readonly InputActionMap m_ActionGameControls;
+        private List<IActionGameControlsActions> m_ActionGameControlsActionsCallbackInterfaces = new List<IActionGameControlsActions>();
+        private readonly InputAction m_ActionGameControls_MovementDirection;
+        private readonly InputAction m_ActionGameControls_AimMode;
+        private readonly InputAction m_ActionGameControls_SecondaryAction;
+        private readonly InputAction m_ActionGameControls_NextUnit;
+        private readonly InputAction m_ActionGameControls_AimPosition;
+        private readonly InputAction m_ActionGameControls_AimMovement;
+        public struct ActionGameControlsActions
+        {
+            private @PlayerControls m_Wrapper;
+            public ActionGameControlsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+            public InputAction @MovementDirection => m_Wrapper.m_ActionGameControls_MovementDirection;
+            public InputAction @AimMode => m_Wrapper.m_ActionGameControls_AimMode;
+            public InputAction @SecondaryAction => m_Wrapper.m_ActionGameControls_SecondaryAction;
+            public InputAction @NextUnit => m_Wrapper.m_ActionGameControls_NextUnit;
+            public InputAction @AimPosition => m_Wrapper.m_ActionGameControls_AimPosition;
+            public InputAction @AimMovement => m_Wrapper.m_ActionGameControls_AimMovement;
+            public InputActionMap Get() { return m_Wrapper.m_ActionGameControls; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(ActionGameControlsActions set) { return set.Get(); }
+            public void AddCallbacks(IActionGameControlsActions instance)
+            {
+                if (instance == null || m_Wrapper.m_ActionGameControlsActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_ActionGameControlsActionsCallbackInterfaces.Add(instance);
+                @MovementDirection.started += instance.OnMovementDirection;
+                @MovementDirection.performed += instance.OnMovementDirection;
+                @MovementDirection.canceled += instance.OnMovementDirection;
+                @AimMode.started += instance.OnAimMode;
+                @AimMode.performed += instance.OnAimMode;
+                @AimMode.canceled += instance.OnAimMode;
+                @SecondaryAction.started += instance.OnSecondaryAction;
+                @SecondaryAction.performed += instance.OnSecondaryAction;
+                @SecondaryAction.canceled += instance.OnSecondaryAction;
+                @NextUnit.started += instance.OnNextUnit;
+                @NextUnit.performed += instance.OnNextUnit;
+                @NextUnit.canceled += instance.OnNextUnit;
+                @AimPosition.started += instance.OnAimPosition;
+                @AimPosition.performed += instance.OnAimPosition;
+                @AimPosition.canceled += instance.OnAimPosition;
+                @AimMovement.started += instance.OnAimMovement;
+                @AimMovement.performed += instance.OnAimMovement;
+                @AimMovement.canceled += instance.OnAimMovement;
+            }
+
+            private void UnregisterCallbacks(IActionGameControlsActions instance)
+            {
+                @MovementDirection.started -= instance.OnMovementDirection;
+                @MovementDirection.performed -= instance.OnMovementDirection;
+                @MovementDirection.canceled -= instance.OnMovementDirection;
+                @AimMode.started -= instance.OnAimMode;
+                @AimMode.performed -= instance.OnAimMode;
+                @AimMode.canceled -= instance.OnAimMode;
+                @SecondaryAction.started -= instance.OnSecondaryAction;
+                @SecondaryAction.performed -= instance.OnSecondaryAction;
+                @SecondaryAction.canceled -= instance.OnSecondaryAction;
+                @NextUnit.started -= instance.OnNextUnit;
+                @NextUnit.performed -= instance.OnNextUnit;
+                @NextUnit.canceled -= instance.OnNextUnit;
+                @AimPosition.started -= instance.OnAimPosition;
+                @AimPosition.performed -= instance.OnAimPosition;
+                @AimPosition.canceled -= instance.OnAimPosition;
+                @AimMovement.started -= instance.OnAimMovement;
+                @AimMovement.performed -= instance.OnAimMovement;
+                @AimMovement.canceled -= instance.OnAimMovement;
+            }
+
+            public void RemoveCallbacks(IActionGameControlsActions instance)
+            {
+                if (m_Wrapper.m_ActionGameControlsActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            public void SetCallbacks(IActionGameControlsActions instance)
+            {
+                foreach (var item in m_Wrapper.m_ActionGameControlsActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_ActionGameControlsActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        public ActionGameControlsActions @ActionGameControls => new ActionGameControlsActions(this);
+
+        // MobaGameControls
+        private readonly InputActionMap m_MobaGameControls;
+        private List<IMobaGameControlsActions> m_MobaGameControlsActionsCallbackInterfaces = new List<IMobaGameControlsActions>();
+        private readonly InputAction m_MobaGameControls_MoveCommand;
+        private readonly InputAction m_MobaGameControls_NextUnit;
+        private readonly InputAction m_MobaGameControls_AimMode;
+        private readonly InputAction m_MobaGameControls_AimPosition;
+        public struct MobaGameControlsActions
+        {
+            private @PlayerControls m_Wrapper;
+            public MobaGameControlsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+            public InputAction @MoveCommand => m_Wrapper.m_MobaGameControls_MoveCommand;
+            public InputAction @NextUnit => m_Wrapper.m_MobaGameControls_NextUnit;
+            public InputAction @AimMode => m_Wrapper.m_MobaGameControls_AimMode;
+            public InputAction @AimPosition => m_Wrapper.m_MobaGameControls_AimPosition;
+            public InputActionMap Get() { return m_Wrapper.m_MobaGameControls; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(MobaGameControlsActions set) { return set.Get(); }
+            public void AddCallbacks(IMobaGameControlsActions instance)
+            {
+                if (instance == null || m_Wrapper.m_MobaGameControlsActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_MobaGameControlsActionsCallbackInterfaces.Add(instance);
+                @MoveCommand.started += instance.OnMoveCommand;
+                @MoveCommand.performed += instance.OnMoveCommand;
+                @MoveCommand.canceled += instance.OnMoveCommand;
+                @NextUnit.started += instance.OnNextUnit;
+                @NextUnit.performed += instance.OnNextUnit;
+                @NextUnit.canceled += instance.OnNextUnit;
+                @AimMode.started += instance.OnAimMode;
+                @AimMode.performed += instance.OnAimMode;
+                @AimMode.canceled += instance.OnAimMode;
+                @AimPosition.started += instance.OnAimPosition;
+                @AimPosition.performed += instance.OnAimPosition;
+                @AimPosition.canceled += instance.OnAimPosition;
+            }
+
+            private void UnregisterCallbacks(IMobaGameControlsActions instance)
+            {
+                @MoveCommand.started -= instance.OnMoveCommand;
+                @MoveCommand.performed -= instance.OnMoveCommand;
+                @MoveCommand.canceled -= instance.OnMoveCommand;
+                @NextUnit.started -= instance.OnNextUnit;
+                @NextUnit.performed -= instance.OnNextUnit;
+                @NextUnit.canceled -= instance.OnNextUnit;
+                @AimMode.started -= instance.OnAimMode;
+                @AimMode.performed -= instance.OnAimMode;
+                @AimMode.canceled -= instance.OnAimMode;
+                @AimPosition.started -= instance.OnAimPosition;
+                @AimPosition.performed -= instance.OnAimPosition;
+                @AimPosition.canceled -= instance.OnAimPosition;
+            }
+
+            public void RemoveCallbacks(IMobaGameControlsActions instance)
+            {
+                if (m_Wrapper.m_MobaGameControlsActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            public void SetCallbacks(IMobaGameControlsActions instance)
+            {
+                foreach (var item in m_Wrapper.m_MobaGameControlsActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_MobaGameControlsActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        public MobaGameControlsActions @MobaGameControls => new MobaGameControlsActions(this);
         public interface IPCActions
         {
             void OnMove(InputAction.CallbackContext context);
+        }
+        public interface IActionGameControlsActions
+        {
+            void OnMovementDirection(InputAction.CallbackContext context);
+            void OnAimMode(InputAction.CallbackContext context);
+            void OnSecondaryAction(InputAction.CallbackContext context);
+            void OnNextUnit(InputAction.CallbackContext context);
+            void OnAimPosition(InputAction.CallbackContext context);
+            void OnAimMovement(InputAction.CallbackContext context);
+        }
+        public interface IMobaGameControlsActions
+        {
+            void OnMoveCommand(InputAction.CallbackContext context);
+            void OnNextUnit(InputAction.CallbackContext context);
+            void OnAimMode(InputAction.CallbackContext context);
+            void OnAimPosition(InputAction.CallbackContext context);
         }
     }
 }
