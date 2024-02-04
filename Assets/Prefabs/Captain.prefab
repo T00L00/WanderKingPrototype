@@ -118,10 +118,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71ad099ae07c73c499324aeb41e903c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followDistance: 2
+  followDistance: 4
   noise: 0
   spread: 2
-  groupWidth: 3
+  groupWidth: 4
   nthOffset: 0
   hollow: 0
 --- !u!114 &4104787815241663425
@@ -152,7 +152,7 @@ MonoBehaviour:
   followerPrefab: {fileID: 8810925901577038305, guid: 545930f544f9a5041a90df7cf259ae0b,
     type: 3}
   formationGenerator: {fileID: 7510455615351092235}
-  followerCount: 8
+  followerCount: 7
   debug: 1
 --- !u!1001 &7496913077038276542
 PrefabInstance:
