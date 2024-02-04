@@ -5,8 +5,8 @@ namespace WK {
     public class AimingController : MonoBehaviour
     {
       
-      public static Action OnEnterAimMode;
-      public static Action OnExitAimMode;
+      public Action OnEnterAimMode;
+      public Action OnExitAimMode;
    
       [SerializeField] private GameObject aimReticle;
       [SerializeField] private LayerMask layerMask;
