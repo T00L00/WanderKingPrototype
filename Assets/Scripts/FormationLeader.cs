@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace WK
 {
+    [RequireComponent(typeof(FormationGenerator))]
     public class FormationLeader : MonoBehaviour
     {
         [SerializeField] private GameObject followerPrefab;
