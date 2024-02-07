@@ -5,31 +5,8 @@ using WK.Aiming;
 
 public class AimingProjectile : MonoBehaviour
 {
-    [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Transform projectileStartPoint;
-    [SerializeField] private AimingPath aimingPath;
 
-    private void Update()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
-        {
-            aimingPath.Calculate( projectileStartPoint.position, hit.point);
-            lineRenderer.positionCount = aimingPath.path.Length;
-            for (var i = 0; i < aimingPath.path.Length; i++)
-            {
-                lineRenderer.SetPosition(i, aimingPath.path[i]);
-            }
-
-            // Debug.Log($"{v0} | {angle} | {time}");
-            // DrawParabolicPath(groundDirection.normalized, v0, angle, time, _step);
-            // if (Input.GetKeyDown(KeyCode.Space)) {
-            //     StopAllCoroutines();
-            //     StartCoroutine(Coroutine_Movement(groundDirection.normalized, _initialVelocity, angle, time));
-            // }
-        }
-    }
 
     private IEnumerator Coroutine_Movement(Vector3 direction, float v0, float angle, float time)
     {

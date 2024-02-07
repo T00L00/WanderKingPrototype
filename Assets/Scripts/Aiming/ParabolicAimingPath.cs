@@ -9,10 +9,11 @@ namespace WK.Aiming
     [SerializeField] private float maxHeight;
     [SerializeField] private bool hasMaxHeight;
     [SerializeField] private float gravity;
+    [SerializeField] private LineRenderer lineRenderer;
 
     private Vector3 startPosition;
     
-    public override void Calculate(Vector3 startPosition, Vector3 endPosition)
+    public override void DrawPath(Vector3 startPosition, Vector3 endPosition)
     {
       this.startPosition = startPosition;
       
@@ -38,10 +39,23 @@ namespace WK.Aiming
       float angle = Mathf.Atan(b * time / targetX);
       float v0 = b / Mathf.Sin(angle);
 
-      DrawParabolicPath(groundDirection.normalized, v0, angle, time);
+      CalculateParabolicPath(groundDirection.normalized, v0, angle, time);
+      DrawParabolicPath();
     }
-    
-    private void DrawParabolicPath(Vector3 direction, float v0, float angle, float time)
+
+    public override void Init()
+    {
+      gameObject.SetActive(true);
+    }
+
+    public override void Clear()
+    {
+      gameObject.SetActive(false);
+      path = new Vector3[]{};
+      lineRenderer.positionCount = 0;
+    }
+
+    private void CalculateParabolicPath(Vector3 direction, float v0, float angle, float time)
     {
       path = new Vector3[(int)(time / step) + 2];
 
@@ -56,6 +70,15 @@ namespace WK.Aiming
       float xFinal = v0 * time * Mathf.Cos(angle);
       float yFinal = v0 * time * Mathf.Sin(angle) - 0.5f * gravity * Mathf.Pow(time, 2);
       path[count] = startPosition + direction*xFinal + Vector3.up*yFinal;
+    }
+
+    private void DrawParabolicPath()
+    {
+      lineRenderer.positionCount = path.Length;
+      for (var i = 0; i < path.Length; i++)
+      {
+        lineRenderer.SetPosition(i, path[i]);
+      }
     }
     
     private float QuadraticEquation(float a, float b, float c, bool positive)
