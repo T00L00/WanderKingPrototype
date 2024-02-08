@@ -5,33 +5,28 @@ using WK.Aiming;
 
 public class AimingProjectile : MonoBehaviour
 {
-    private Vector3 startPosition;
-    private float gravity = 9.8f;
     [SerializeField] private float speedMultiplier = 4f;
+    private Vector3 startPosition;
+    private AimingPath aimingPath;
     
     private void Awake()
     {
         startPosition = transform.position;
     }
     
-    public void LaunchProjectile(AimingPath aimingPath)
-    {
-        Vector3 direction = aimingPath.Direction;
-        float v0 = aimingPath.SpeedStart;
-        float angle = aimingPath.Angle;
+    public void LaunchProjectile(AimingPath aimingPath) {
+        this.aimingPath = aimingPath;
         float time = aimingPath.Duration;
-        StartCoroutine(Coroutine_Movement(direction, v0, angle, time));
+        StartCoroutine(Coroutine_Movement(time));
     }
 
-    private IEnumerator Coroutine_Movement(Vector3 direction, float v0, float angle, float time)
+    private IEnumerator Coroutine_Movement(float time)
     {
         float t = 0f;
         
         while (t < time)
         {
-            float x = v0 * Mathf.Cos(angle) * t;
-            float y = v0 * Mathf.Sin(angle) * t - 0.5f * gravity * Mathf.Pow(t, 2);
-            transform.position = startPosition + direction*x + Vector3.up*y;
+            transform.position = aimingPath.CalculatePositionFromTime(t);
             t += Time.deltaTime * speedMultiplier;
             yield return null;
         }

@@ -91,6 +91,12 @@ namespace WK.Aiming
       float result = (-b + sqrt) / (2 * a);
       return result;
     }
-    
+
+    public override Vector3 CalculatePositionFromTime(float time)
+    {
+      float x = SpeedStart * Mathf.Cos(Angle) * time;
+      float y = SpeedStart * Mathf.Sin(Angle) * time - 0.5f * gravity * Mathf.Pow(time, 2);
+      return startPosition + Direction*x + Vector3.up*y;
+    }
   }
 }
