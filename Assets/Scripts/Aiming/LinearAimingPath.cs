@@ -11,7 +11,12 @@ namespace WK.Aiming
     {
       Vector3 groundedBasePosition = new Vector3(startPosition.x, 0, startPosition.z);
       Vector3 groundedTargetPosition = new Vector3(endPosition.x, 0f, endPosition.z);
-
+      
+      Direction = groundedBasePosition.normalized;
+      Angle = 0f;
+      SpeedStart = 2f;
+      Duration = 2f;
+      
       path = new Vector3[]
       {
         groundedBasePosition,

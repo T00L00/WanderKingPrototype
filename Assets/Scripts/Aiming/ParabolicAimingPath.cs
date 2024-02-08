@@ -34,12 +34,13 @@ namespace WK.Aiming
 
       float tplus = QuadraticEquation(a, b, c, true);
       float tminus = QuadraticEquation(a, b, c, false);
-      float time = tplus > tminus ? tplus : tminus;
+      Duration = tplus > tminus ? tplus : tminus;
         
-      float angle = Mathf.Atan(b * time / targetX);
-      float v0 = b / Mathf.Sin(angle);
-
-      CalculateParabolicPath(groundDirection.normalized, v0, angle, time);
+      Angle = Mathf.Atan(b * Duration / targetX);
+      SpeedStart = b / Mathf.Sin(Angle);
+      Direction = groundDirection.normalized;
+      
+      CalculateParabolicPath(Direction, SpeedStart, Angle, Duration);
       DrawParabolicPath();
     }
 

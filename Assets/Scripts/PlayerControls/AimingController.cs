@@ -14,6 +14,7 @@ namespace WK
       [SerializeField] private LayerMask layerMask;
       [SerializeField] private Transform projectileStartPoint;
       [SerializeField] private AimingPath aimingPath;
+      [SerializeField] private GameObject projectilePrefab;
       
       private bool isAimModeEnabled;
 
@@ -29,6 +30,12 @@ namespace WK
       {
         isAimModeEnabled = false;
         aimReticle.SetActive(false);
+        
+        GameObject projectile = Instantiate(projectilePrefab, projectileStartPoint.position, Quaternion.identity);
+        projectile.SetActive(true);
+        AimingProjectile aimingProjectile = projectile.GetComponent<AimingProjectile>();
+        aimingProjectile.LaunchProjectile(aimingPath);
+        
         aimingPath.Clear();
         OnExitAimMode?.Invoke();
       }
