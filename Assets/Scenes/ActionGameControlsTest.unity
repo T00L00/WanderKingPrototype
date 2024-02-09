@@ -767,7 +767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   step: 0.1
-  maxHeight: 4
+  maxHeight: 5
   hasMaxHeight: 1
   gravity: 9.8
   lineRenderer: {fileID: 486718891}
@@ -994,8 +994,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   projectileStartPoint: {fileID: 251023176}
-  abstractAiming: {fileID: 1330656631}
   projectilePrefab: {fileID: 1603651865}
+  availableAttacks:
+  - {fileID: 486718892}
+  - {fileID: 1330656631}
+  - {fileID: 1813979552}
 --- !u!1 &990806627
 GameObject:
   m_ObjectHideFlags: 0
