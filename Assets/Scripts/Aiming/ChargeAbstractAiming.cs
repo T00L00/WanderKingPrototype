@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace WK.Aiming
 {
-  public class LinearAimingPath : AimingPath
+  public class ChargeAbstractAiming : AbstractAiming
   {
     
     [SerializeField] private LineRenderer lineRenderer;

@@ -13,7 +13,7 @@ namespace WK
       [SerializeField] private GameObject aimReticle;
       [SerializeField] private LayerMask layerMask;
       [SerializeField] private Transform projectileStartPoint;
-      [SerializeField] private AimingPath aimingPath;
+      [SerializeField] private AbstractAiming abstractAiming;
       [SerializeField] private GameObject projectilePrefab;
       
       private bool isAimModeEnabled;
@@ -22,7 +22,7 @@ namespace WK
       {
         isAimModeEnabled = true;
         aimReticle.SetActive(true);
-        aimingPath.Init();
+        abstractAiming.Init();
         OnEnterAimMode?.Invoke();
       }
       
@@ -34,9 +34,9 @@ namespace WK
         GameObject projectile = Instantiate(projectilePrefab, projectileStartPoint.position, Quaternion.identity);
         projectile.SetActive(true);
         AimingProjectile aimingProjectile = projectile.GetComponent<AimingProjectile>();
-        aimingProjectile.LaunchProjectile(aimingPath);
+        aimingProjectile.LaunchProjectile(abstractAiming);
         
-        aimingPath.Clear();
+        abstractAiming.Clear();
         OnExitAimMode?.Invoke();
       }
       
@@ -49,7 +49,7 @@ namespace WK
         if (Physics.Raycast(ray, out hit, float.MaxValue, layerMask))
         {
           aimReticle.transform.position =  new Vector3(hit.point.x, 0.01f, hit.point.z);
-          aimingPath.DrawPath(projectileStartPoint.position, hit.point);
+          abstractAiming.DrawPath(projectileStartPoint.position, hit.point);
         }
       }
     }

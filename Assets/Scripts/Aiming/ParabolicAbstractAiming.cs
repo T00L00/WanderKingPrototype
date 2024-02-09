@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace WK.Aiming
 {
-  public class ParabolicAimingPath : AimingPath
+  public class ParabolicAbstractAiming : AbstractAiming
   {
     
     [SerializeField] private float step;
