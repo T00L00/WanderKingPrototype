@@ -9,9 +9,31 @@ namespace WK
     {
         [SerializeField] private MoveController mover;
 
+        /// <summary>
+        /// The empty gameobject parent holding all this follower and other followers
+        /// </summary>
+        public Transform ContainerParent
+        {
+            get => transform.parent.parent;
+            set
+            {
+                transform.parent.parent = value;
+            }
+        }
+
+        /// <summary>
+        /// The actual unit gameobject parent
+        /// </summary>
+        public Transform UnitParent => transform.parent;
+
         public void Follow(Vector3 position)
         {
             mover.MoveTo(position);
+        }
+
+        public void EnableNavmeshAgent(bool state)
+        {
+            mover.EnableMovement(state);
         }
     }
 }
