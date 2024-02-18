@@ -8,27 +8,26 @@ namespace WK.Aiming
     {
         [SerializeField] private float speedMultiplier = 4f;
         private Vector3 startPosition;
-        private AbstractAiming abstractAiming;
+        private AbstractProjectileTrajectory projectileTrajectory;
         
         private void Awake()
         {
             startPosition = transform.position;
         }
         
-        public void Launch(AbstractAiming abstractAiming)
+        public void Launch(AbstractProjectileTrajectory projectileTrajectory)
         {
-            this.abstractAiming = abstractAiming;
-            float time = abstractAiming.Duration;
-            StartCoroutine(Coroutine_Movement(time));
+            this.projectileTrajectory = projectileTrajectory;
+            StartCoroutine(Coroutine_Movement());
         }
 
-        private IEnumerator Coroutine_Movement(float time)
+        private IEnumerator Coroutine_Movement()
         {
             float t = 0f;
-            
+            float time = projectileTrajectory.duration;
             while (t < time)
             {
-                transform.position = abstractAiming.CalculatePositionFromTime(t);
+                transform.position = projectileTrajectory.CalculatePositionFromTime(t);
                 t += Time.deltaTime * speedMultiplier;
                 yield return null;
             }

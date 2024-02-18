@@ -45,7 +45,7 @@ namespace WK
         GameObject projectile = Instantiate(projectilePrefab, projectileStartPoint.position, Quaternion.identity);
         projectile.SetActive(true);
         AimingProjectile aimingProjectile = projectile.GetComponent<AimingProjectile>();
-        aimingProjectile.Launch(currentAttack);
+        aimingProjectile.Launch(currentAttack.projectileTrajectory);
       }
       
       public void SetAimPosition(Vector2 cursorPosition)
