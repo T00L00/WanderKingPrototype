@@ -7,8 +7,10 @@ namespace WK
     {
         [SerializeField] private Camera cam;
         [SerializeField] private MoveController moveController;
-        [SerializeField] private LayerMask groundLayer;
         [SerializeField] private AimingController aimingController;
+        [SerializeField] private Chambering launcher;
+
+        [SerializeField] private LayerMask groundLayer;
 
         private PlayerControls playerControls;
         private Vector2 cursorPosition;
@@ -31,7 +33,7 @@ namespace WK
         }
 
         private void Update() {
-            aimingController.SetAimPosition(cursorPosition);
+            aimingController?.SetAimPosition(cursorPosition);
         }
 
         public void OnMoveCommand(InputAction.CallbackContext context)
@@ -49,9 +51,14 @@ namespace WK
             moveController.MoveTo(targetPosition);
         }
 
+        // Add Lctrl to toggle chambering?
+
         public void OnNextUnit(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
+
+            launcher.ChamberFollower();
+            
             aimingController.DisableAimMode();
             aimingController.NextUnit();
         }

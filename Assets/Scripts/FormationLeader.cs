@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 namespace WK
@@ -14,6 +13,7 @@ namespace WK
         [SerializeField] private bool debug = true;
 
         private List<FormationFollower> formationFollowers;
+        private Queue<FormationFollower> followersQueue;
 
         public int FollowerCount => followerCount;
 
@@ -24,12 +24,15 @@ namespace WK
 
         private void Update()
         {
-            if (followerCount == 0) return;
+            if (followersQueue is null || followersQueue.Count == 0) return;
 
-            List<Vector3> positions = formationGenerator.GeneratePositions(followerCount);
-            for (int i = 0; i < followerCount; i++)
+            List<Vector3> positions = formationGenerator.GeneratePositions(followersQueue.Count);
+
+            int i = 0;
+            foreach (FormationFollower f in followersQueue)
             {
-                formationFollowers[i].Follow(positions[i]);
+                f.Follow(positions[i]);
+                i++;
             }
         }
 
@@ -57,6 +60,23 @@ namespace WK
                 GameObject follower = Instantiate(followerPrefab, followerParent.transform);
                 formationFollowers.Add(follower.GetComponentInChildren<FormationFollower>());
             }
+
+            followersQueue = new Queue<FormationFollower>(formationFollowers);
+        }
+
+        public FormationFollower GetNextFollower()
+        {
+            if (followersQueue.Count == 0)
+            {
+                Debug.LogError("No more followers in the queue.");
+                return null;
+            }
+            return followersQueue.Dequeue();
+        }
+
+        public void ReturnFollower(FormationFollower follower)
+        {
+            followersQueue.Enqueue(follower);
         }
     }
 }
