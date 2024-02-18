@@ -9,8 +9,8 @@ namespace WK.Aiming
     [SerializeField] private float maxHeight;
     [SerializeField] private bool hasMaxHeight;
     [SerializeField] private float gravity;
-    [SerializeField] private LineRenderer lineRenderer;
-
+    [SerializeField] private TrajectoryRender trajectoryRender;
+    
     private Vector3 startPosition;
     
     public override void DrawPath(Vector3 startPosition, Vector3 endPosition)
@@ -41,19 +41,20 @@ namespace WK.Aiming
       Direction = groundDirection.normalized;
       
       CalculateParabolicPath(Direction, SpeedStart, Angle, Duration);
-      DrawParabolicPath();
+      trajectoryRender.SetPath(path);
     }
 
     public override void Init()
     {
       gameObject.SetActive(true);
+      trajectoryRender.Init();
     }
 
     public override void Clear()
     {
       gameObject.SetActive(false);
       path = new Vector3[]{};
-      lineRenderer.positionCount = 0;
+      trajectoryRender.Clear();
     }
 
     private void CalculateParabolicPath(Vector3 direction, float v0, float angle, float time)
@@ -73,14 +74,6 @@ namespace WK.Aiming
       path[count] = startPosition + direction*xFinal + Vector3.up*yFinal;
     }
 
-    private void DrawParabolicPath()
-    {
-      lineRenderer.positionCount = path.Length;
-      for (var i = 0; i < path.Length; i++)
-      {
-        lineRenderer.SetPosition(i, path[i]);
-      }
-    }
     
     private float QuadraticEquation(float a, float b, float c, bool positive)
     {

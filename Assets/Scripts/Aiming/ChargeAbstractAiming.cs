@@ -5,8 +5,8 @@ namespace WK.Aiming
   public class ChargeAbstractAiming : AbstractAiming
   {
     
-    [SerializeField] private LineRenderer lineRenderer;
-    
+    [SerializeField] private TrajectoryRender trajectoryRender;
+
     private Vector3 startPosition;
 
     public override void DrawPath(Vector3 startPosition, Vector3 endPosition) {
@@ -25,34 +25,27 @@ namespace WK.Aiming
         groundedBasePosition,
         groundedTargetPosition
       };
-
-      DrawLinearPath();
+      
+      trajectoryRender.SetPath(path);
     }
 
     public override void Init()
     {
       gameObject.SetActive(true);
+      trajectoryRender.Init();
     }
 
     public override void Clear()
     {
       gameObject.SetActive(false);
       path = new Vector3[]{};
-      lineRenderer.positionCount = 0;
+      trajectoryRender.Clear();
     }
 
     public override Vector3 CalculatePositionFromTime(float time)
     {
       return startPosition + Direction * (time / Duration) * SpeedStart;
     }
-    
-    private void DrawLinearPath()
-    {
-      lineRenderer.positionCount = path.Length;
-      for (var i = 0; i < path.Length; i++)
-      {
-        lineRenderer.SetPosition(i, path[i]);
-      }
-    }
+
   }
 }
