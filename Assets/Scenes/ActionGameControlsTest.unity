@@ -814,7 +814,7 @@ MonoBehaviour:
   maxHeight: 5
   hasMaxHeight: 1
   gravity: 9.8
-  trajectoryRender: {fileID: 168580810}
+  abstractTrajectoryRender: {fileID: 168580810}
 --- !u!1 &755562232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1357,7 +1357,7 @@ MonoBehaviour:
   maxHeight: 2
   hasMaxHeight: 1
   gravity: 9.8
-  trajectoryRender: {fileID: 168580810}
+  abstractTrajectoryRender: {fileID: 168580810}
 --- !u!1 &1387488029
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,7 +1695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c0a31a85e204951a839a8310be851ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trajectoryRender: {fileID: 168580810}
+  abstractTrajectoryRender: {fileID: 168580810}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

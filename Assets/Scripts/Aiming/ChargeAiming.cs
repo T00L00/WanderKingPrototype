@@ -2,14 +2,15 @@ using UnityEngine;
 
 namespace WK.Aiming
 {
-  public class ChargeAbstractAiming : AbstractAiming
+  public class ChargeAiming : AbstractAiming
   {
     
-    [SerializeField] private TrajectoryRender trajectoryRender;
+    [SerializeField] private AbstractTrajectoryRender abstractTrajectoryRender;
 
     private Vector3 startPosition;
 
-    public override void DrawPath(Vector3 startPosition, Vector3 endPosition) {
+    public override void DrawPath(Vector3 startPosition, Vector3 endPosition)
+    {
       this.startPosition = startPosition;
       
       Vector3 groundedBasePosition = new Vector3(startPosition.x, 0, startPosition.z);
@@ -26,20 +27,20 @@ namespace WK.Aiming
         groundedTargetPosition
       };
       
-      trajectoryRender.SetPath(path);
+      abstractTrajectoryRender.SetPath(path);
     }
 
     public override void Init()
     {
       gameObject.SetActive(true);
-      trajectoryRender.Init();
+      abstractTrajectoryRender.Init();
     }
 
     public override void Clear()
     {
       gameObject.SetActive(false);
       path = new Vector3[]{};
-      trajectoryRender.Clear();
+      abstractTrajectoryRender.Clear();
     }
 
     public override Vector3 CalculatePositionFromTime(float time)

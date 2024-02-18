@@ -2,14 +2,14 @@ using UnityEngine;
 
 namespace WK.Aiming
 {
-  public class ParabolicAbstractAiming : AbstractAiming
+  public class ParabolicAiming : AbstractAiming
   {
     
     [SerializeField] private float step;
     [SerializeField] private float maxHeight;
     [SerializeField] private bool hasMaxHeight;
     [SerializeField] private float gravity;
-    [SerializeField] private TrajectoryRender trajectoryRender;
+    [SerializeField] private AbstractTrajectoryRender abstractTrajectoryRender;
     
     private Vector3 startPosition;
     
@@ -41,20 +41,20 @@ namespace WK.Aiming
       Direction = groundDirection.normalized;
       
       CalculateParabolicPath(Direction, SpeedStart, Angle, Duration);
-      trajectoryRender.SetPath(path);
+      abstractTrajectoryRender.SetPath(path);
     }
 
     public override void Init()
     {
       gameObject.SetActive(true);
-      trajectoryRender.Init();
+      abstractTrajectoryRender.Init();
     }
 
     public override void Clear()
     {
       gameObject.SetActive(false);
       path = new Vector3[]{};
-      trajectoryRender.Clear();
+      abstractTrajectoryRender.Clear();
     }
 
     private void CalculateParabolicPath(Vector3 direction, float v0, float angle, float time)

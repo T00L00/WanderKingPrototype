@@ -4,7 +4,7 @@ using UnityEngine;
 namespace WK.Aiming {
   
   [RequireComponent(typeof(LineRenderer))]
-  public class LineRendererTrajectory : TrajectoryRender
+  public class LineRendererTrajectory : AbstractTrajectoryRender
   {
     private LineRenderer lineRenderer;
 
