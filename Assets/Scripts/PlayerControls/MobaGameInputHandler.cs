@@ -52,7 +52,8 @@ namespace WK
         public void OnNextUnit(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
-            
+            aimingController.DisableAimMode();
+            aimingController.NextUnit();
         }
 
         public void OnAimMode(InputAction.CallbackContext context)
@@ -62,6 +63,7 @@ namespace WK
                 aimingController.EnableAimMode();
             } else if (context.canceled)
             {
+                aimingController.LaunchProjectile();
                 aimingController.DisableAimMode();
             }
         }
