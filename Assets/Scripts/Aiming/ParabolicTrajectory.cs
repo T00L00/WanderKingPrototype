@@ -49,7 +49,7 @@ namespace WK.Aiming
       return CalculateParabolicPath(this.direction, speedStart, angle, duration);
     }
     
-    public override Vector3 CalculatePositionFromTime(float time)
+    public override Vector3 CalculatePositionAtTime(float time)
     {
       float x = speedStart * Mathf.Cos(angle) * time;
       float y = speedStart * Mathf.Sin(angle) * time - 0.5f * gravity * Mathf.Pow(time, 2);

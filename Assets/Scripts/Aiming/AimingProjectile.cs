@@ -27,7 +27,7 @@ namespace WK.Aiming
             float time = projectileTrajectory.duration;
             while (t < time)
             {
-                transform.position = projectileTrajectory.CalculatePositionFromTime(t);
+                transform.position = projectileTrajectory.CalculatePositionAtTime(t);
                 t += Time.deltaTime * speedMultiplier;
                 yield return null;
             }

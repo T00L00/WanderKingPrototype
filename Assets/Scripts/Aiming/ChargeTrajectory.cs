@@ -6,7 +6,7 @@ namespace WK.Aiming {
     private float speedStart;
     private Vector3 startPosition;
     
-    public override Vector3 CalculatePositionFromTime(float time) {
+    public override Vector3 CalculatePositionAtTime(float time) {
       return startPosition + direction * (time / duration) * speedStart;
     }
 
