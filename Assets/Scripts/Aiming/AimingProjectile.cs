@@ -15,7 +15,7 @@ namespace WK.Aiming
             startPosition = transform.position;
         }
         
-        public void LaunchProjectile(AbstractAiming abstractAiming) {
+        public void Launch(AbstractAiming abstractAiming) {
             this.abstractAiming = abstractAiming;
             float time = abstractAiming.Duration;
             StartCoroutine(Coroutine_Movement(time));
