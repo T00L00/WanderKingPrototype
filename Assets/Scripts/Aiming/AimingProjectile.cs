@@ -9,6 +9,7 @@ namespace WK.Aiming
         [SerializeField] private float speedMultiplier = 4f;
         private Vector3 startPosition;
         private AbstractTrajectoryPath trajectoryPath;
+        private float elapsedTime;
         
         private void Awake()
         {
@@ -18,19 +19,19 @@ namespace WK.Aiming
         public void Launch(AbstractTrajectoryPath trajectoryPath)
         {
             this.trajectoryPath = trajectoryPath;
-            StartCoroutine(Coroutine_Movement());
+            elapsedTime = 0f;
         }
 
-        private IEnumerator Coroutine_Movement()
-        {
-            float t = 0f;
-            float time = trajectoryPath.duration;
-            while (t < time)
+        private void Update() {
+            if (trajectoryPath == null) return;
+            transform.position = trajectoryPath.CalculatePositionAtTime(elapsedTime);
+            elapsedTime += (Time.deltaTime * speedMultiplier);
+            
+            if (elapsedTime > trajectoryPath.duration)
             {
-                transform.position = trajectoryPath.CalculatePositionAtTime(t);
-                t += Time.deltaTime * speedMultiplier;
-                yield return null;
+                trajectoryPath = null;
             }
         }
+
     }
 }
