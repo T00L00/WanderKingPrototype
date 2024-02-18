@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace WK.Aiming {
-  public abstract class AbstractProjectileTrajectory
+  public abstract class AbstractTrajectoryPath
   {
     public float duration { get; protected set; }
     public abstract Vector3 CalculatePositionAtTime(float time);

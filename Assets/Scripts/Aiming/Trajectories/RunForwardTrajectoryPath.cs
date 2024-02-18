@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace WK.Aiming {
-  public class ChargeTrajectory : AbstractProjectileTrajectory {
+  public class RunForwardTrajectoryPath : AbstractTrajectoryPath {
     private Vector3 direction;
     private float speedStart;
     private Vector3 startPosition;

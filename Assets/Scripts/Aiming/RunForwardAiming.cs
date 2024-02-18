@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace WK.Aiming
 {
-  public class ChargeAiming : AbstractAiming
+  public class RunForwardAiming : AbstractAiming
   {
     
     [SerializeField] private AbstractTrajectoryRender abstractTrajectoryRender;
@@ -11,14 +11,14 @@ namespace WK.Aiming
     
 
     public override void Init() {
-      projectileTrajectory = new ChargeTrajectory();
+      TrajectoryPath = new RunForwardTrajectoryPath();
       gameObject.SetActive(true);
       abstractTrajectoryRender.Init();
     }
 
     public override void DrawPath(Vector3 startPosition, Vector3 endPosition)
     {
-      Vector3[] path = projectileTrajectory.GetPath(startPosition, endPosition);
+      Vector3[] path = TrajectoryPath.GetPath(startPosition, endPosition);
       abstractTrajectoryRender.SetPath(path);
     }
 

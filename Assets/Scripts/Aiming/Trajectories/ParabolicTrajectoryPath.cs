@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace WK.Aiming
 {
-  public class ParabolicTrajectory : AbstractProjectileTrajectory
+  public class ParabolicTrajectoryPath : AbstractTrajectoryPath
   {
     private float gravity;
     private float step;
@@ -12,7 +12,7 @@ namespace WK.Aiming
     private float maxHeight;
     private Vector3 startPosition;
     
-    public ParabolicTrajectory(float step, float gravity, float maxHeight = 0f)
+    public ParabolicTrajectoryPath(float step, float gravity, float maxHeight = 0f)
     {
       this.step = step;
       this.gravity = gravity;

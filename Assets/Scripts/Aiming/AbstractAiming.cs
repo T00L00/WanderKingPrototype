@@ -3,7 +3,7 @@ using UnityEngine;
 namespace WK.Aiming {
   public abstract class AbstractAiming : MonoBehaviour
   {
-    public AbstractProjectileTrajectory projectileTrajectory { get; protected set; }
+    public AbstractTrajectoryPath TrajectoryPath { get; protected set; }
 
     public abstract void DrawPath(Vector3 startPosition, Vector3 endPosition);
     
