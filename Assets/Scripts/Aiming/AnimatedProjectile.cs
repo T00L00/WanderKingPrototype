@@ -16,7 +16,6 @@ namespace WK.Aiming
             Vector3 targetXZPos = new Vector3(targetPosition.x, 0.0f, targetPosition.z);
             transform.LookAt(targetXZPos);
 
-            transform.position = trajectoryPath.startPosition;
             
             elapsedTime = 0f;
         }

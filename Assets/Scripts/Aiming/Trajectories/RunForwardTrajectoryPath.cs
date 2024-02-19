@@ -18,6 +18,7 @@ namespace WK.Aiming {
       speedStart = Vector3.Distance(groundedBasePosition, groundedTargetPosition);
       this.startPosition = groundedBasePosition;
       destination = endPosition;
+      launchAngle = 0f;
       
       return new Vector3[]
       {

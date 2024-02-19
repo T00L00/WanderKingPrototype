@@ -46,6 +46,7 @@ namespace WK
         
         AbstractProjectile abstractProjectile = Instantiate(abstractProjectilePrefab, projectileStartPoint.position, Quaternion.identity);
         abstractProjectile.gameObject.SetActive(true);
+        abstractProjectile.transform.position = currentAttack.TrajectoryPath.startPosition;
         abstractProjectile.Launch(currentAttack.TrajectoryPath);
       }
       

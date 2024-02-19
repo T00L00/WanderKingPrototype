@@ -6,7 +6,6 @@ namespace WK.Aiming
   {
     private float gravity;
     private float step;
-    private float angle;
     private float speedStart;
     private Vector3 direction;
     private float maxHeight;
@@ -40,19 +39,19 @@ namespace WK.Aiming
       float tminus = QuadraticEquation(a, b, c, false);
       
       duration = tplus > tminus ? tplus : tminus;
-      angle = Mathf.Atan(b * duration / targetX);
-      speedStart = b / Mathf.Sin(angle);
+      launchAngle = Mathf.Atan(b * duration / targetX);
+      speedStart = b / Mathf.Sin(launchAngle);
       direction = groundDirection.normalized;
       startPosition = start;
       destination = end;
       
-      return CalculateParabolicPath(this.direction, speedStart, angle, duration);
+      return CalculateParabolicPath(this.direction, speedStart, launchAngle, duration);
     }
     
     public override Vector3 CalculatePositionAtTime(float time)
     {
-      float x = speedStart * Mathf.Cos(angle) * time;
-      float y = speedStart * Mathf.Sin(angle) * time - 0.5f * gravity * Mathf.Pow(time, 2);
+      float x = speedStart * Mathf.Cos(launchAngle) * time;
+      float y = speedStart * Mathf.Sin(launchAngle) * time - 0.5f * gravity * Mathf.Pow(time, 2);
       return startPosition + direction*x + Vector3.up * y;
     }
     

@@ -4,7 +4,6 @@ namespace WK.Aiming
 {
     public class KinematicProjectile : AbstractProjectile
     {
-        [Range(20.0f, 75.0f)] public float launchAngle = 20f;
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private TrajectoryOrientation lookAtType = TrajectoryOrientation.FaceInitialDirection;
 
@@ -45,6 +44,7 @@ namespace WK.Aiming
         public override void Launch(AbstractTrajectoryPath trajectoryPath)
         {
             Vector3 targetPosition = trajectoryPath.destination;
+            float launchAngle = Mathf.Max(20f * Mathf.Deg2Rad, trajectoryPath.launchAngle);
             isInAir = true;
 
             Vector3 projectileXZPos = new Vector3(transform.position.x, 0.0f, transform.position.z);
@@ -54,11 +54,11 @@ namespace WK.Aiming
 
             float distance = Vector3.Distance(projectileXZPos, targetXZPos);
             float gravity = Physics.gravity.y;
-            float tanAlpha = Mathf.Tan(launchAngle * Mathf.Deg2Rad);
+            float tanAlpha = Mathf.Tan(launchAngle);
             float height = targetPosition.y - transform.position.y;
-            float Vz = Mathf.Sqrt(gravity * distance * distance / (2.0f * (height - distance * tanAlpha)));
+            float result = height - distance * tanAlpha;
+            float Vz = Mathf.Sqrt(gravity * distance * distance / (2.0f * result));
             float Vy = tanAlpha * Vz;
-
             Vector3 localVelocity = new Vector3(0f, Vy, Vz);
             Vector3 globalVelocity = transform.TransformDirection(localVelocity);
 
