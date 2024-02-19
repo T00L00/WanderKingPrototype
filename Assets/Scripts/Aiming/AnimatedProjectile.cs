@@ -5,7 +5,6 @@ namespace WK.Aiming
     public class AnimatedProjectile : AbstractProjectile
     {
         [SerializeField] private float speedMultiplier = 4f;
-        private Vector3 startPosition;
         private AbstractTrajectoryPath trajectoryPath;
         private float elapsedTime;
         
@@ -16,13 +15,10 @@ namespace WK.Aiming
             Vector3 targetPosition = trajectoryPath.destination;
             Vector3 targetXZPos = new Vector3(targetPosition.x, 0.0f, targetPosition.z);
             transform.LookAt(targetXZPos);
+
+            transform.position = trajectoryPath.startPosition;
             
             elapsedTime = 0f;
-        }
-        
-        private void Awake()
-        {
-            startPosition = transform.position;
         }
 
         private void Update() {

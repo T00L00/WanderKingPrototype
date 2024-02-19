@@ -4,7 +4,6 @@ namespace WK.Aiming {
   public class RunForwardTrajectoryPath : AbstractTrajectoryPath {
     private Vector3 direction;
     private float speedStart;
-    private Vector3 startPosition;
     
     public override Vector3 CalculatePositionAtTime(float time) {
       return startPosition + direction * (time / duration) * speedStart;
@@ -17,7 +16,7 @@ namespace WK.Aiming {
       direction = (groundedTargetPosition - groundedBasePosition).normalized;
       duration = 2f;
       speedStart = Vector3.Distance(groundedBasePosition, groundedTargetPosition);
-      this.startPosition = startPosition;
+      this.startPosition = groundedBasePosition;
       destination = endPosition;
       
       return new Vector3[]

@@ -10,7 +10,6 @@ namespace WK.Aiming
     private float speedStart;
     private Vector3 direction;
     private float maxHeight;
-    private Vector3 startPosition;
     
     public ParabolicTrajectoryPath(float step, float gravity, float maxHeight = 0f)
     {
