@@ -9,7 +9,6 @@ namespace WK
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private DirectionalMoveInputController moveController;
         [SerializeField] private AimingController aimingController;
-        [SerializeField] private KinematicProjectile kinematicProjectile;
         
         private PlayerControls playerControls;
         private Vector2 cursorPosition;
@@ -58,8 +57,7 @@ namespace WK
             {
                 aimingController.EnableAimMode();
             } else if (context.canceled) {
-                kinematicProjectile.LaunchProjectile(aimingController.targetPosition);
-                // aimingController.LaunchProjectile();
+                aimingController.LaunchProjectile();
                 aimingController.DisableAimMode();
             }
         }

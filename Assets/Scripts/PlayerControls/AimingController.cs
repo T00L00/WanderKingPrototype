@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using WK.Aiming;
 
 namespace WK
@@ -16,7 +17,7 @@ namespace WK
       [SerializeField] private Transform projectileStartPoint;
       private AbstractAiming currentAttack => availableAttacks[currentAttackIndex];
       
-      [SerializeField] private GameObject projectilePrefab;
+      [FormerlySerializedAs("projectilePrefab")] [SerializeField] private AbstractProjectile abstractProjectilePrefab;
       [SerializeField] private List<AbstractAiming> availableAttacks = new List<AbstractAiming>();
       private int currentAttackIndex;
       
@@ -43,10 +44,9 @@ namespace WK
       {
         if (!isAimModeEnabled) return;
         
-        GameObject projectile = Instantiate(projectilePrefab, projectileStartPoint.position, Quaternion.identity);
-        projectile.SetActive(true);
-        AimingProjectile aimingProjectile = projectile.GetComponent<AimingProjectile>();
-        aimingProjectile.Launch(currentAttack.TrajectoryPath);
+        AbstractProjectile abstractProjectile = Instantiate(abstractProjectilePrefab, projectileStartPoint.position, Quaternion.identity);
+        abstractProjectile.gameObject.SetActive(true);
+        abstractProjectile.Launch(currentAttack.TrajectoryPath);
       }
       
       public void SetAimPosition(Vector2 cursorPosition)

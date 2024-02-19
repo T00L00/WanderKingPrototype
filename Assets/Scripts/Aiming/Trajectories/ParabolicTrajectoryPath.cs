@@ -45,6 +45,7 @@ namespace WK.Aiming
       speedStart = b / Mathf.Sin(angle);
       direction = groundDirection.normalized;
       startPosition = start;
+      destination = end;
       
       return CalculateParabolicPath(this.direction, speedStart, angle, duration);
     }
