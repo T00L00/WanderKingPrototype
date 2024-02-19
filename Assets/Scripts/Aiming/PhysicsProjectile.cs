@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace WK.Aiming
 {
-    public class KinematicProjectile : AbstractProjectile
+    public class PhysicsProjectile : AbstractProjectile
     {
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private TrajectoryOrientation lookAtType = TrajectoryOrientation.FaceInitialDirection;
