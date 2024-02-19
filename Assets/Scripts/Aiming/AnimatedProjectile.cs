@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 namespace WK.Aiming
@@ -14,6 +12,11 @@ namespace WK.Aiming
         public override void Launch(AbstractTrajectoryPath trajectoryPath)
         {
             this.trajectoryPath = trajectoryPath;
+            
+            Vector3 targetPosition = trajectoryPath.destination;
+            Vector3 targetXZPos = new Vector3(targetPosition.x, 0.0f, targetPosition.z);
+            transform.LookAt(targetXZPos);
+            
             elapsedTime = 0f;
         }
         
