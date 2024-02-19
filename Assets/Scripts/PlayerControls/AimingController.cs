@@ -21,7 +21,8 @@ namespace WK
       private int currentAttackIndex;
       
       private bool isAimModeEnabled;
-
+      public Vector3 targetPosition => aimReticle.transform.position;
+      
       public void EnableAimMode()
       {
         isAimModeEnabled = true;
