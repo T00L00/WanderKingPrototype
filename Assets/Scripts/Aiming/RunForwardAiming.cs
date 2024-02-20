@@ -4,11 +4,13 @@ namespace WK.Aiming
 {
   public class RunForwardAiming : AbstractAiming
   {
-    
     [SerializeField] private AbstractTrajectoryRender abstractTrajectoryRender;
 
     private Vector3 startPosition;
-    
+
+    public override void CalculatePath(Vector3 startPosition, Vector3 endPosition) {
+      TrajectoryPath.CalculatePath(startPosition, endPosition);
+    }
 
     public override void Init() {
       TrajectoryPath = new RunForwardTrajectoryPath();
@@ -16,10 +18,9 @@ namespace WK.Aiming
       abstractTrajectoryRender.Init();
     }
 
-    public override void DrawPath(Vector3 startPosition, Vector3 endPosition)
+    public override void DrawPath()
     {
-      Vector3[] path = TrajectoryPath.GetPath(startPosition, endPosition);
-      abstractTrajectoryRender.SetPath(path);
+      abstractTrajectoryRender.SetPath(TrajectoryPath.GetPath());
     }
 
     public override void Clear()

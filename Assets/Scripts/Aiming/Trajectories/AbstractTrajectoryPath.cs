@@ -9,6 +9,7 @@ namespace WK.Aiming {
     public float launchAngle { get; protected set; }
     
     public abstract Vector3 CalculatePositionAtTime(float time);
-    public abstract Vector3[] GetPath(Vector3 startPosition, Vector3 endPosition);
+    public abstract void CalculatePath(Vector3 startPosition, Vector3 endPosition);
+    public abstract Vector3[] GetPath();
   }
 }

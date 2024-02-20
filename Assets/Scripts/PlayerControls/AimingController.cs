@@ -15,6 +15,8 @@ namespace WK
       [SerializeField] private GameObject aimReticle;
       [SerializeField] private LayerMask layerMask;
       [SerializeField] private Transform projectileStartPoint;
+      [SerializeField] private bool showTrajectory = true;
+      
       private AbstractAiming currentAttack => availableAttacks[currentAttackIndex];
       
       [FormerlySerializedAs("projectilePrefab")] [SerializeField] private AbstractProjectile abstractProjectilePrefab;
@@ -59,7 +61,10 @@ namespace WK
         if (Physics.Raycast(ray, out hit, float.MaxValue, layerMask))
         {
           aimReticle.transform.position =  new Vector3(hit.point.x, 0.01f, hit.point.z);
-          currentAttack.DrawPath(projectileStartPoint.position, hit.point);
+          currentAttack.CalculatePath(projectileStartPoint.position, hit.point);
+          if (showTrajectory) {
+            currentAttack.DrawPath();
+          }
         }
       }
 

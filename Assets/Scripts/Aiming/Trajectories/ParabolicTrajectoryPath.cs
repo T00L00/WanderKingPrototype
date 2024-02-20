@@ -17,7 +17,7 @@ namespace WK.Aiming
       this.maxHeight = maxHeight;
     }
 
-    public override Vector3[] GetPath(Vector3 start, Vector3 end)
+    public override void CalculatePath(Vector3 start, Vector3 end)
     {
       bool hasMaxHeight = maxHeight >= 0;
       Vector3 directionPosition = (end - start);
@@ -44,14 +44,18 @@ namespace WK.Aiming
       direction = groundDirection.normalized;
       startPosition = start;
       destination = end;
-      
+    }
+
+    public override Vector3[] GetPath()
+    {
       return CalculateParabolicPath(this.direction, speedStart, launchAngle, duration);
     }
-    
-    public override Vector3 CalculatePositionAtTime(float time)
-    {
-      float x = speedStart * Mathf.Cos(launchAngle) * time;
-      float y = speedStart * Mathf.Sin(launchAngle) * time - 0.5f * gravity * Mathf.Pow(time, 2);
+   
+    public override Vector3 CalculatePositionAtTime(float time) {
+      float easeTime = Mathf.Lerp(0, duration, Easing.Back.Out(time/duration));
+      
+      float x = speedStart * Mathf.Cos(launchAngle) * easeTime;
+      float y = speedStart * Mathf.Sin(launchAngle) * easeTime - 0.5f * gravity * Mathf.Pow(easeTime, 2);
       return startPosition + direction*x + Vector3.up * y;
     }
     
