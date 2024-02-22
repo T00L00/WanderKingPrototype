@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 392b88bc4892a4ae3812148cdeb8dbdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedMultiplier: 4
+  speedMultiplier: 3
 --- !u!1 &3235759069513213311
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +255,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   projectileStartPoint: {fileID: 6375544183130729342}
+  showTrajectory: 1
   abstractProjectilePrefab: {fileID: 7780587710629635125}
   availableAttacks:
   - {fileID: 7686601315743737759}
@@ -555,7 +556,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.50574684
+        value: 0.064027786
         inSlope: 0
         outSlope: 0
         tangentMode: 0
