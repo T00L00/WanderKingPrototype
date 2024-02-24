@@ -56,8 +56,8 @@ namespace WK
             if (context.started)
             {
                 aimingController.EnableAimMode();
-            } else if (context.canceled)
-            {
+            } else if (context.canceled) {
+                aimingController.LaunchProjectile();
                 aimingController.DisableAimMode();
             }
         }
@@ -70,7 +70,8 @@ namespace WK
         public void OnNextUnit(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
-        
+            aimingController.DisableAimMode();
+            aimingController.NextUnit();
         }
 
         public void OnAimPosition(InputAction.CallbackContext context)
