@@ -16,15 +16,15 @@ namespace WK
             if (activeFollower != null)
             {
                 activeFollower.EnableNavmeshAgent(true);
-                activeFollower.ContainerParent = activeFollowerParent;
+                activeFollower.FormationParent = activeFollowerParent;
                 formationLeader.ReturnFollower(activeFollower);
-            }            
+            }
 
             activeFollower = formationLeader.GetNextFollower();
-            activeFollowerParent = activeFollower.ContainerParent;
+            activeFollowerParent = activeFollower.FormationParent;
 
             activeFollower.EnableNavmeshAgent(false);
-            activeFollower.ContainerParent = transform.parent;
+            activeFollower.FormationParent = transform.parent;
             StartCoroutine(MoveToPosition(new Vector3(0, 0, 3), 0.5f));
         }
 
@@ -33,7 +33,6 @@ namespace WK
             Vector3 startPosition = activeFollower.UnitParent.localPosition;
             float startTime = Time.time;
             float fraction = 0;
-
 
             while (fraction < 1)
             {

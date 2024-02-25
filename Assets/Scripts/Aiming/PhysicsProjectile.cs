@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace WK.Aiming
 {
-    public class PhysicsProjectile : AbstractProjectile
+    public class PhysicsProjectile : MonoBehaviour, IProjectile
     {
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private TrajectoryOrientation lookAtType = TrajectoryOrientation.FaceInitialDirection;
@@ -41,10 +41,10 @@ namespace WK.Aiming
             }
         }
 
-        public override void Launch(AbstractTrajectoryPath trajectoryPath)
+        public void Launch(ProjectileTrajectory trajectoryPath)
         {
-            Vector3 targetPosition = trajectoryPath.destination;
-            float launchAngle = Mathf.Max(20f * Mathf.Deg2Rad, trajectoryPath.launchAngle);
+            Vector3 targetPosition = trajectoryPath.Destination;
+            float launchAngle = Mathf.Max(20f * Mathf.Deg2Rad, trajectoryPath.LaunchAngle);
             isInAir = true;
 
             Vector3 projectileXZPos = new Vector3(transform.position.x, 0.0f, transform.position.z);

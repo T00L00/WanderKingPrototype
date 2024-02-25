@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using TooLoo.AI;
 using UnityEngine;
+using WK.Aiming;
 
 namespace WK
 {
     public class FormationFollower : MonoBehaviour
     {
         [SerializeField] private MoveController mover;
+        [SerializeField] private ProjectileBehavior projectileBehavior;
 
         /// <summary>
-        /// The empty gameobject parent holding all this follower and other followers
+        /// The empty gameobject parent holding this follower and all other followers
         /// </summary>
-        public Transform ContainerParent
+        public Transform FormationParent
         {
             get => transform.parent.parent;
             set
@@ -25,6 +27,8 @@ namespace WK
         /// The actual unit gameobject parent
         /// </summary>
         public Transform UnitParent => transform.parent;
+
+        public ProjectileBehavior ProjectileBehavior => projectileBehavior;
 
         public void Follow(Vector3 position)
         {

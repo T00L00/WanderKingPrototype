@@ -426,7 +426,7 @@ namespace WK
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""NextUnit"",
+                    ""name"": ""ChamberLauncher"",
                     ""type"": ""Button"",
                     ""id"": ""f35b5b63-b02c-4ba3-8a61-a5df5a413284"",
                     ""expectedControlType"": ""Button"",
@@ -472,7 +472,7 @@ namespace WK
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""NextUnit"",
+                    ""action"": ""ChamberLauncher"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -517,7 +517,7 @@ namespace WK
             // MobaGameControls
             m_MobaGameControls = asset.FindActionMap("MobaGameControls", throwIfNotFound: true);
             m_MobaGameControls_MoveCommand = m_MobaGameControls.FindAction("MoveCommand", throwIfNotFound: true);
-            m_MobaGameControls_NextUnit = m_MobaGameControls.FindAction("NextUnit", throwIfNotFound: true);
+            m_MobaGameControls_ChamberLauncher = m_MobaGameControls.FindAction("ChamberLauncher", throwIfNotFound: true);
             m_MobaGameControls_AimMode = m_MobaGameControls.FindAction("AimMode", throwIfNotFound: true);
             m_MobaGameControls_AimPosition = m_MobaGameControls.FindAction("AimPosition", throwIfNotFound: true);
         }
@@ -714,7 +714,7 @@ namespace WK
         private readonly InputActionMap m_MobaGameControls;
         private List<IMobaGameControlsActions> m_MobaGameControlsActionsCallbackInterfaces = new List<IMobaGameControlsActions>();
         private readonly InputAction m_MobaGameControls_MoveCommand;
-        private readonly InputAction m_MobaGameControls_NextUnit;
+        private readonly InputAction m_MobaGameControls_ChamberLauncher;
         private readonly InputAction m_MobaGameControls_AimMode;
         private readonly InputAction m_MobaGameControls_AimPosition;
         public struct MobaGameControlsActions
@@ -722,7 +722,7 @@ namespace WK
             private @PlayerControls m_Wrapper;
             public MobaGameControlsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
             public InputAction @MoveCommand => m_Wrapper.m_MobaGameControls_MoveCommand;
-            public InputAction @NextUnit => m_Wrapper.m_MobaGameControls_NextUnit;
+            public InputAction @ChamberLauncher => m_Wrapper.m_MobaGameControls_ChamberLauncher;
             public InputAction @AimMode => m_Wrapper.m_MobaGameControls_AimMode;
             public InputAction @AimPosition => m_Wrapper.m_MobaGameControls_AimPosition;
             public InputActionMap Get() { return m_Wrapper.m_MobaGameControls; }
@@ -737,9 +737,9 @@ namespace WK
                 @MoveCommand.started += instance.OnMoveCommand;
                 @MoveCommand.performed += instance.OnMoveCommand;
                 @MoveCommand.canceled += instance.OnMoveCommand;
-                @NextUnit.started += instance.OnNextUnit;
-                @NextUnit.performed += instance.OnNextUnit;
-                @NextUnit.canceled += instance.OnNextUnit;
+                @ChamberLauncher.started += instance.OnChamberLauncher;
+                @ChamberLauncher.performed += instance.OnChamberLauncher;
+                @ChamberLauncher.canceled += instance.OnChamberLauncher;
                 @AimMode.started += instance.OnAimMode;
                 @AimMode.performed += instance.OnAimMode;
                 @AimMode.canceled += instance.OnAimMode;
@@ -753,9 +753,9 @@ namespace WK
                 @MoveCommand.started -= instance.OnMoveCommand;
                 @MoveCommand.performed -= instance.OnMoveCommand;
                 @MoveCommand.canceled -= instance.OnMoveCommand;
-                @NextUnit.started -= instance.OnNextUnit;
-                @NextUnit.performed -= instance.OnNextUnit;
-                @NextUnit.canceled -= instance.OnNextUnit;
+                @ChamberLauncher.started -= instance.OnChamberLauncher;
+                @ChamberLauncher.performed -= instance.OnChamberLauncher;
+                @ChamberLauncher.canceled -= instance.OnChamberLauncher;
                 @AimMode.started -= instance.OnAimMode;
                 @AimMode.performed -= instance.OnAimMode;
                 @AimMode.canceled -= instance.OnAimMode;
@@ -795,7 +795,7 @@ namespace WK
         public interface IMobaGameControlsActions
         {
             void OnMoveCommand(InputAction.CallbackContext context);
-            void OnNextUnit(InputAction.CallbackContext context);
+            void OnChamberLauncher(InputAction.CallbackContext context);
             void OnAimMode(InputAction.CallbackContext context);
             void OnAimPosition(InputAction.CallbackContext context);
         }

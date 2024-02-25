@@ -8,15 +8,15 @@ namespace WK.Aiming
     [SerializeField] private float step;
     [SerializeField] private float maxHeight;
     [SerializeField] private float gravity;
-    [SerializeField] private AbstractTrajectoryRender abstractTrajectoryRender;
+    [SerializeField] private ProjectileTrajectoryRenderer trajectoryRenderer;
     
     private Vector3 startPosition;
     
     public override void Init()
     {
-      TrajectoryPath = new ParabolicTrajectoryPath(step, gravity, maxHeight);
+      TrajectoryPath = new ParabolicProjectileTrajectory(step, gravity, maxHeight);
       gameObject.SetActive(true);
-      abstractTrajectoryRender.Init();
+      trajectoryRenderer.Init();
     }
     
     public override void CalculatePath(Vector3 startPosition, Vector3 endPosition) {
@@ -24,13 +24,13 @@ namespace WK.Aiming
     }
     
     public override void DrawPath() {
-      abstractTrajectoryRender.SetPath(TrajectoryPath.GetPath());
+      trajectoryRenderer.SetPath(TrajectoryPath.GetPath());
     }
 
     public override void Clear()
     {
       gameObject.SetActive(false);
-      abstractTrajectoryRender.Clear();
+      trajectoryRenderer.Clear();
     }
 
   }

@@ -1,14 +1,14 @@
 using UnityEngine;
 
 namespace WK.Aiming {
-  public class RunForwardTrajectoryPath : AbstractTrajectoryPath {
+  public class RunForwardTrajectoryPath : ProjectileTrajectory {
     private Vector3 direction;
     private float speedStart;
     
     public override Vector3 CalculatePositionAtTime(float time) {
-      float easeTime = Mathf.Lerp(0, duration, Easing.Quintic.Out(time/duration));
+      float easeTime = Mathf.Lerp(0, Duration, Easing.Quintic.Out(time/Duration));
 
-      return startPosition + direction * (easeTime / duration) * speedStart;
+      return StartPosition + direction * (easeTime / Duration) * speedStart;
     }
 
     public override void CalculatePath(Vector3 startPosition, Vector3 endPosition) {
@@ -16,18 +16,18 @@ namespace WK.Aiming {
       Vector3 groundedTargetPosition = new Vector3(endPosition.x, 0f, endPosition.z);
 
       direction = (groundedTargetPosition - groundedBasePosition).normalized;
-      duration = 2f;
+      Duration = 2f;
       speedStart = Vector3.Distance(groundedBasePosition, groundedTargetPosition);
-      this.startPosition = groundedBasePosition;
-      destination = endPosition;
-      launchAngle = 0f;
+      this.StartPosition = groundedBasePosition;
+      Destination = endPosition;
+      LaunchAngle = 0f;
     }
     
     public override Vector3[] GetPath() {
       return new Vector3[]
       {
-        startPosition,
-        destination
+        StartPosition,
+        Destination
       };
     }
   }

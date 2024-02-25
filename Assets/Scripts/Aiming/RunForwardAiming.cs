@@ -4,7 +4,7 @@ namespace WK.Aiming
 {
   public class RunForwardAiming : AbstractAiming
   {
-    [SerializeField] private AbstractTrajectoryRender abstractTrajectoryRender;
+    [SerializeField] private ProjectileTrajectoryRenderer abstractTrajectoryRender;
 
     private Vector3 startPosition;
 
