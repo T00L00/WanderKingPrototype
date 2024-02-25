@@ -49,14 +49,18 @@ namespace WK
             }
 
             activeFollower = formationLeader.GetNextFollower();
+
+            // No more followers to launch
+            if (activeFollower is null) return;
+
             activeFollowerParent = activeFollower.FormationParent;
 
             activeFollower.EnableNavmeshAgent(false);
             activeFollower.FormationParent = transform.parent;
-            StartCoroutine(MoveToPosition(transform.position, 0.5f));
+            StartCoroutine(MoveToPosition(0.5f));
         }
 
-        IEnumerator MoveToPosition(Vector3 target, float duration)
+        IEnumerator MoveToPosition(float duration)
         {
             Vector3 startPosition = activeFollower.UnitParent.position;
             float startTime = Time.time;
@@ -65,7 +69,7 @@ namespace WK
             while (fraction < 1)
             {
                 fraction = (Time.time - startTime) / duration;
-                activeFollower.UnitParent.position = Vector3.Lerp(startPosition, target, fraction);
+                activeFollower.UnitParent.position = Vector3.Lerp(startPosition, transform.position, fraction);
                 yield return null;
             }
 
@@ -84,9 +88,11 @@ namespace WK
         {
             if (!isChambered) return;
 
+            isChambered = false;
             isAimModeEnabled = false;
             aimReticle.SetActive(false);
             activeFollower.ProjectileBehavior.Clear();
+            activeFollower = null;
             OnExitAimMode?.Invoke();
         }
 
@@ -95,7 +101,7 @@ namespace WK
             if (!isAimModeEnabled) return;
 
             activeFollower.FormationParent = null;
-            activeFollower.ProjectileBehavior.Launch();
+            activeFollower.ProjectileBehavior.Launch();            
         }
       
         private void SetAimPosition(Vector2 cursorPosition)
@@ -106,11 +112,9 @@ namespace WK
             if (Physics.Raycast(ray, out hit, float.MaxValue, layerMask))
             {
                 aimReticle.transform.position = new Vector3(hit.point.x, 0.01f, hit.point.z);
-                activeFollower.ProjectileBehavior.CalculatePath(hit.point);
-                //currentAttack.CalculatePath(activeFollower.transform.position, hit.point);
+                activeFollower.ProjectileBehavior.CalculatePath(transform.position, hit.point);
                 if (showTrajectory) 
                 {
-                    //currentAttack.DrawPath();
                     activeFollower.ProjectileBehavior.DrawPath();
                 }
             }

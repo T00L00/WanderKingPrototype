@@ -52,9 +52,9 @@ namespace WK.Aiming
             trajectoryRenderer.SetPath(trajectory.GetPath());
         }
 
-        public void CalculatePath(Vector3 endPosition)
+        public void CalculatePath(Vector3 startPosition, Vector3 endPosition)
         {
-            trajectory.CalculatePath(transform.parent.position, endPosition);
+            trajectory.CalculatePath(startPosition, endPosition);
         }
 
         public void Clear()

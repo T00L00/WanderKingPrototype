@@ -68,7 +68,7 @@ namespace WK
         {
             if (followersQueue.Count == 0)
             {
-                Debug.LogError("No more followers in the queue.");
+                Debug.Log("No more followers in the queue.");
                 return null;
             }
             return followersQueue.Dequeue();
