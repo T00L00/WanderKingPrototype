@@ -51,7 +51,7 @@ namespace WK
         {
             if (!context.performed) return;
 
-            launcher?.ChamberFollower();
+            launcher.ChamberFollower();
         }
 
         public void OnAimMode(InputAction.CallbackContext context)

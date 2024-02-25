@@ -8,6 +8,9 @@ using WK.Aiming;
 
 namespace WK
 {
+    /// <summary>
+    /// Create a child object with this component in order to launch followers that have ProjectileBehavior component
+    /// </summary>
     public class Launcher : MonoBehaviour
     {
         [SerializeField] private FormationLeader formationLeader;

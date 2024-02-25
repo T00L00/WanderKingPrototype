@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace WK.Aiming
 {
+    /// <summary>
+    /// Create child gameobject with this component for any unit that needs to be launched
+    /// </summary>
     public class ProjectileBehavior : MonoBehaviour
     {
         [SerializeField] private float speedMultiplier = 4f;
@@ -20,7 +23,8 @@ namespace WK.Aiming
         {
             isInFlight = false;
             elapsedTime = 0f;
-            trajectory = new ParabolicProjectileTrajectory(step, gravity, maxHeight);
+            //trajectory = new ParabolicProjectileTrajectory(step, gravity, maxHeight);
+            trajectory = new RunForwardProjectileTrajectory();
         }
 
         private void FixedUpdate() 
