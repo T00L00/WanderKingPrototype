@@ -7,11 +7,11 @@ namespace WK
     {
         [SerializeField] private Camera cam;
         [SerializeField] private MoveController moveController;
+        [SerializeField] private Launcher launcher;
+
         [SerializeField] private LayerMask groundLayer;
-        [SerializeField] private AimingController aimingController;
 
         private PlayerControls playerControls;
-        private Vector2 cursorPosition;
         private Vector3 targetPosition;
 
         void Awake()
@@ -30,15 +30,11 @@ namespace WK
             playerControls.Disable();
         }
 
-        private void Update() {
-            aimingController.SetAimPosition(cursorPosition);
-        }
-
         public void OnMoveCommand(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
             
-            Ray ray = cam.ScreenPointToRay(cursorPosition);
+            Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, float.MaxValue, groundLayer))
@@ -49,28 +45,31 @@ namespace WK
             moveController.MoveTo(targetPosition);
         }
 
-        public void OnNextUnit(InputAction.CallbackContext context)
+        // Add Lctrl to toggle chambering?
+
+        public void OnChamberFollower(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
-            aimingController.DisableAimMode();
-            aimingController.NextUnit();
+
+            launcher.ChamberFollower();
         }
 
         public void OnAimMode(InputAction.CallbackContext context)
         {
             if (context.started)
             {
-                aimingController.EnableAimMode();
-            } else if (context.canceled)
+                launcher.EnableAimMode();
+            }
+            else if (context.canceled)
             {
-                aimingController.LaunchProjectile();
-                aimingController.DisableAimMode();
+                launcher.LaunchFollower();
+                launcher.DisableAimMode();
             }
         }
 
         public void OnAimPosition(InputAction.CallbackContext context)
         {
-            cursorPosition = context.ReadValue<Vector2>();
+            launcher.CursorPosition = context.ReadValue<Vector2>();
         }
     }
 }
