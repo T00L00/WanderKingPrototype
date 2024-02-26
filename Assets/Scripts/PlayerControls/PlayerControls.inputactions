@@ -402,7 +402,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ChamberLauncher",
+                    "name": "ChamberFollower",
                     "type": "Button",
                     "id": "f35b5b63-b02c-4ba3-8a61-a5df5a413284",
                     "expectedControlType": "Button",
@@ -448,7 +448,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ChamberLauncher",
+                    "action": "ChamberFollower",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

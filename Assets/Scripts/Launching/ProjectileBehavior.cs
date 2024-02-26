@@ -21,10 +21,12 @@ namespace WK.Aiming
 
         private void Start()
         {
+            // TODO - Remove. This is just temporary code to test trajectories. Trajectory type should be obtained from unit information.
+
             isInFlight = false;
             elapsedTime = 0f;
-            //trajectory = new ParabolicProjectileTrajectory(step, gravity, maxHeight);
-            trajectory = new RunForwardProjectileTrajectory();
+            trajectory = new ParabolicProjectileTrajectory(step, gravity, maxHeight);
+            //trajectory = new RunForwardProjectileTrajectory();
         }
 
         private void FixedUpdate() 
@@ -41,7 +43,7 @@ namespace WK.Aiming
             }
         }
 
-        // TODO - Turn this into a coroutine
+        // TODO - Turn this into a coroutine?
         public void Launch()
         {
             Vector3 targetPosition = trajectory.Destination;

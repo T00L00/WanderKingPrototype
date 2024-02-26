@@ -47,7 +47,7 @@ namespace WK
 
         // Add Lctrl to toggle chambering?
 
-        public void OnChamberLauncher(InputAction.CallbackContext context)
+        public void OnChamberFollower(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
 
@@ -62,7 +62,7 @@ namespace WK
             }
             else if (context.canceled)
             {
-                launcher.LaunchProjectile();
+                launcher.LaunchFollower();
                 launcher.DisableAimMode();
             }
         }

@@ -57,7 +57,7 @@ namespace WK
             {
                 aimingController.EnableAimMode();
             } else if (context.canceled) {
-                aimingController.LaunchProjectile();
+                aimingController.LaunchFollower();
                 aimingController.DisableAimMode();
             }
         }

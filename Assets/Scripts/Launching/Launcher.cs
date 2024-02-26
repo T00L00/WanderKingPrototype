@@ -57,7 +57,6 @@ namespace WK
             if (activeFollower is null) return;
 
             activeFollowerParent = activeFollower.FormationParent;
-
             activeFollower.EnableNavmeshAgent(false);
             activeFollower.FormationParent = transform.parent;
             StartCoroutine(MoveToPosition(0.5f));
@@ -87,6 +86,8 @@ namespace WK
             aimReticle.SetActive(true);
             OnEnterAimMode?.Invoke();
         }
+
+        // TODO - If you quickly press and release space before unit is fully in chambered position, unit gets stuck in chambered position
         public void DisableAimMode()
         {
             if (!isChambered) return;
@@ -99,8 +100,9 @@ namespace WK
             OnExitAimMode?.Invoke();
         }
 
-        public void LaunchProjectile()
+        public void LaunchFollower()
         {
+            if (!isChambered) return;
             if (!isAimModeEnabled) return;
 
             activeFollower.FormationParent = null;

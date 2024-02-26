@@ -47,6 +47,9 @@ namespace WK
             }
         }
 
+        /// <summary>
+        /// Temporary logic to spawn followers.
+        /// </summary>
         public void Init()
         {
             if (followerCount == 0) return;
@@ -66,7 +69,7 @@ namespace WK
 
         public FormationFollower GetNextFollower()
         {
-            if (followersQueue.Count == 0)
+            if (followersQueue is null || followersQueue.Count == 0)
             {
                 Debug.Log("No more followers in the queue.");
                 return null;
