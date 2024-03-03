@@ -249,9 +249,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2391665565556147553}
-  - component: {fileID: 7510455615351092235}
   - component: {fileID: 4104787815241663425}
-  - component: {fileID: 8897140230186451675}
   m_Layer: 0
   m_Name: Formation
   m_TagString: Untagged
@@ -274,24 +272,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7622811458138456225}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7510455615351092235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7105490453579788874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71ad099ae07c73c499324aeb41e903c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followDistance: 4
-  noise: 0
-  spread: 2
-  groupWidth: 4
-  nthOffset: 0
-  hollow: 0
 --- !u!114 &4104787815241663425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,23 +286,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mover: {fileID: 8530345493120433570}
   projectileBehavior: {fileID: 6866576214734780392}
---- !u!114 &8897140230186451675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7105490453579788874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffb2c0eb0ad27cc4ca9713325aecbf8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followerPrefab: {fileID: 8810925901577038305, guid: 545930f544f9a5041a90df7cf259ae0b,
-    type: 3}
-  formationGenerator: {fileID: 7510455615351092235}
-  followerCount: 7
-  debug: 1
 --- !u!1001 &7496913077038276542
 PrefabInstance:
   m_ObjectHideFlags: 0
