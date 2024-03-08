@@ -9,6 +9,7 @@ namespace WK
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private DirectionalMoveInputController moveController;
         [SerializeField] private Launcher aimingController;
+        [SerializeField] private UIController uiController;
         
         private PlayerControls playerControls;
         private Vector2 cursorPosition;
@@ -86,5 +87,9 @@ namespace WK
             cursorDirection = context.ReadValue<Vector3>();
         }
 
+        public void OnActivateAction(InputAction.CallbackContext context) {
+            if (!context.performed) return;
+            
+        }
     }
 }
