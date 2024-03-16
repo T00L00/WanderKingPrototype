@@ -110,6 +110,15 @@ namespace WK
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ActivateAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""af5e2206-2bde-4c16-9b46-1d98069ead81"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -409,6 +418,28 @@ namespace WK
                     ""action"": ""AimMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6420dbb-7039-4dd2-9fa1-f954bd54c74b"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActivateAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10d538a7-ba6d-4aeb-99f5-d783d2ef7bed"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActivateAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -451,6 +482,15 @@ namespace WK
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ActivateAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""4f60745a-34b9-4f3d-bb25-32262b66b10f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -497,6 +537,17 @@ namespace WK
                     ""action"": ""AimPosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2d16ae3-8960-40cd-b87c-040de4ce908b"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActivateAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -514,12 +565,14 @@ namespace WK
             m_ActionGameControls_NextUnit = m_ActionGameControls.FindAction("NextUnit", throwIfNotFound: true);
             m_ActionGameControls_AimPosition = m_ActionGameControls.FindAction("AimPosition", throwIfNotFound: true);
             m_ActionGameControls_AimMovement = m_ActionGameControls.FindAction("AimMovement", throwIfNotFound: true);
+            m_ActionGameControls_ActivateAction = m_ActionGameControls.FindAction("ActivateAction", throwIfNotFound: true);
             // MobaGameControls
             m_MobaGameControls = asset.FindActionMap("MobaGameControls", throwIfNotFound: true);
             m_MobaGameControls_MoveCommand = m_MobaGameControls.FindAction("MoveCommand", throwIfNotFound: true);
             m_MobaGameControls_ChamberFollower = m_MobaGameControls.FindAction("ChamberFollower", throwIfNotFound: true);
             m_MobaGameControls_AimMode = m_MobaGameControls.FindAction("AimMode", throwIfNotFound: true);
             m_MobaGameControls_AimPosition = m_MobaGameControls.FindAction("AimPosition", throwIfNotFound: true);
+            m_MobaGameControls_ActivateAction = m_MobaGameControls.FindAction("ActivateAction", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -633,6 +686,7 @@ namespace WK
         private readonly InputAction m_ActionGameControls_NextUnit;
         private readonly InputAction m_ActionGameControls_AimPosition;
         private readonly InputAction m_ActionGameControls_AimMovement;
+        private readonly InputAction m_ActionGameControls_ActivateAction;
         public struct ActionGameControlsActions
         {
             private @PlayerControls m_Wrapper;
@@ -643,6 +697,7 @@ namespace WK
             public InputAction @NextUnit => m_Wrapper.m_ActionGameControls_NextUnit;
             public InputAction @AimPosition => m_Wrapper.m_ActionGameControls_AimPosition;
             public InputAction @AimMovement => m_Wrapper.m_ActionGameControls_AimMovement;
+            public InputAction @ActivateAction => m_Wrapper.m_ActionGameControls_ActivateAction;
             public InputActionMap Get() { return m_Wrapper.m_ActionGameControls; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -670,6 +725,9 @@ namespace WK
                 @AimMovement.started += instance.OnAimMovement;
                 @AimMovement.performed += instance.OnAimMovement;
                 @AimMovement.canceled += instance.OnAimMovement;
+                @ActivateAction.started += instance.OnActivateAction;
+                @ActivateAction.performed += instance.OnActivateAction;
+                @ActivateAction.canceled += instance.OnActivateAction;
             }
 
             private void UnregisterCallbacks(IActionGameControlsActions instance)
@@ -692,6 +750,9 @@ namespace WK
                 @AimMovement.started -= instance.OnAimMovement;
                 @AimMovement.performed -= instance.OnAimMovement;
                 @AimMovement.canceled -= instance.OnAimMovement;
+                @ActivateAction.started -= instance.OnActivateAction;
+                @ActivateAction.performed -= instance.OnActivateAction;
+                @ActivateAction.canceled -= instance.OnActivateAction;
             }
 
             public void RemoveCallbacks(IActionGameControlsActions instance)
@@ -717,6 +778,7 @@ namespace WK
         private readonly InputAction m_MobaGameControls_ChamberFollower;
         private readonly InputAction m_MobaGameControls_AimMode;
         private readonly InputAction m_MobaGameControls_AimPosition;
+        private readonly InputAction m_MobaGameControls_ActivateAction;
         public struct MobaGameControlsActions
         {
             private @PlayerControls m_Wrapper;
@@ -725,6 +787,7 @@ namespace WK
             public InputAction @ChamberFollower => m_Wrapper.m_MobaGameControls_ChamberFollower;
             public InputAction @AimMode => m_Wrapper.m_MobaGameControls_AimMode;
             public InputAction @AimPosition => m_Wrapper.m_MobaGameControls_AimPosition;
+            public InputAction @ActivateAction => m_Wrapper.m_MobaGameControls_ActivateAction;
             public InputActionMap Get() { return m_Wrapper.m_MobaGameControls; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -746,6 +809,9 @@ namespace WK
                 @AimPosition.started += instance.OnAimPosition;
                 @AimPosition.performed += instance.OnAimPosition;
                 @AimPosition.canceled += instance.OnAimPosition;
+                @ActivateAction.started += instance.OnActivateAction;
+                @ActivateAction.performed += instance.OnActivateAction;
+                @ActivateAction.canceled += instance.OnActivateAction;
             }
 
             private void UnregisterCallbacks(IMobaGameControlsActions instance)
@@ -762,6 +828,9 @@ namespace WK
                 @AimPosition.started -= instance.OnAimPosition;
                 @AimPosition.performed -= instance.OnAimPosition;
                 @AimPosition.canceled -= instance.OnAimPosition;
+                @ActivateAction.started -= instance.OnActivateAction;
+                @ActivateAction.performed -= instance.OnActivateAction;
+                @ActivateAction.canceled -= instance.OnActivateAction;
             }
 
             public void RemoveCallbacks(IMobaGameControlsActions instance)
@@ -791,6 +860,7 @@ namespace WK
             void OnNextUnit(InputAction.CallbackContext context);
             void OnAimPosition(InputAction.CallbackContext context);
             void OnAimMovement(InputAction.CallbackContext context);
+            void OnActivateAction(InputAction.CallbackContext context);
         }
         public interface IMobaGameControlsActions
         {
@@ -798,6 +868,7 @@ namespace WK
             void OnChamberFollower(InputAction.CallbackContext context);
             void OnAimMode(InputAction.CallbackContext context);
             void OnAimPosition(InputAction.CallbackContext context);
+            void OnActivateAction(InputAction.CallbackContext context);
         }
     }
 }

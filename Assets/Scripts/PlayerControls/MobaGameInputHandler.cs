@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace WK
@@ -8,6 +9,7 @@ namespace WK
         [SerializeField] private Camera cam;
         [SerializeField] private MoveController moveController;
         [SerializeField] private Launcher launcher;
+        [SerializeField] private UIController uiController;
 
         [SerializeField] private LayerMask groundLayer;
 
@@ -33,6 +35,8 @@ namespace WK
         public void OnMoveCommand(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
+            // Do nothing if pointer is over UI
+            if (EventSystem.current.IsPointerOverGameObject()) return;
             
             Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
             RaycastHit hit;
@@ -70,6 +74,15 @@ namespace WK
         public void OnAimPosition(InputAction.CallbackContext context)
         {
             launcher.CursorPosition = context.ReadValue<Vector2>();
+        }
+
+        public void OnActivateAction(InputAction.CallbackContext context)
+        {
+            if (!context.performed) return;
+            // Do nothing if pointer is over UI
+            if (EventSystem.current.IsPointerOverGameObject()) return;
+            
+            uiController.OnActivateAction();
         }
     }
 }
