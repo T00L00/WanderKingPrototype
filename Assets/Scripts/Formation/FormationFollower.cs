@@ -14,14 +14,7 @@ namespace WK
         /// <summary>
         /// The empty gameobject parent holding this follower and all other followers
         /// </summary>
-        public Transform FormationParent
-        {
-            get => transform.parent.parent;
-            set
-            {
-                transform.parent.parent = value;
-            }
-        }
+        public Transform FormationParent => transform.parent.parent;
 
         /// <summary>
         /// The actual unit gameobject parent
@@ -38,6 +31,16 @@ namespace WK
         public void EnableNavmeshAgent(bool state)
         {
             mover.EnableMovement(state);
+        }
+
+        public void DetachFromFormationParent()
+        {
+            transform.parent.parent = null;
+        }
+
+        public void SetFormationParent(Transform formationParent)
+        {
+            transform.parent.parent = formationParent;
         }
     }
 }

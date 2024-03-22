@@ -22,6 +22,7 @@ namespace WK
             Init();
         }
 
+        // TODO - Movement ai should just be set to follow generated positions
         private void Update()
         {
             if (followersQueue is null || followersQueue.Count == 0) return;

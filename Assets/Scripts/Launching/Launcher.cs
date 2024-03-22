@@ -13,15 +13,16 @@ namespace WK
     /// </summary>
     public class Launcher : MonoBehaviour
     {
-        [SerializeField] private FormationLeader formationLeader;
+        [SerializeField] private FormationManager formationManager;
 
         [Header("Aiming")]
         [SerializeField] private GameObject aimReticle;
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private bool showTrajectory = true;
 
-        private FormationFollower activeFollower;
-        private Transform activeFollowerParent;
+        private FormationFollower activeCaptain;
+
+        private Coroutine chargingCoroutine;
 
         private bool isAimModeEnabled = false;
         private bool isChambered = false;
@@ -43,39 +44,41 @@ namespace WK
 
         public void ChamberFollower()
         {
-            // Return previous follower to its original leader
-            if (activeFollower != null)
-            {
-                activeFollower.EnableNavmeshAgent(true);
-                activeFollower.FormationParent = activeFollowerParent;
-                formationLeader.ReturnFollower(activeFollower);
-            }
-
-            activeFollower = formationLeader.GetNextFollower();
-
-            // No more followers to launch
-            if (activeFollower is null) return;
-
-            activeFollowerParent = activeFollower.FormationParent;
-            activeFollower.EnableNavmeshAgent(false);
-            activeFollower.FormationParent = transform.parent;
+            activeCaptain = formationManager.GetCaptainForChambering();
             StartCoroutine(MoveToPosition(0.5f));
         }
 
         IEnumerator MoveToPosition(float duration)
         {
-            Vector3 startPosition = activeFollower.UnitParent.position;
+            Vector3 startPosition = activeCaptain.UnitParent.position;
             float startTime = Time.time;
             float fraction = 0;
 
             while (fraction < 1)
             {
                 fraction = (Time.time - startTime) / duration;
-                activeFollower.UnitParent.position = Vector3.Lerp(startPosition, transform.position, fraction);
+                activeCaptain.UnitParent.position = Vector3.Lerp(startPosition, transform.position, fraction);
                 yield return null;
             }
 
             isChambered = true;
+        }
+
+        IEnumerator ChargeActiveCaptain()
+        {
+            float chargeTime = 0;
+            while (isChambered)
+            {
+                chargeTime += Time.deltaTime;
+
+                if (chargeTime >= 1)
+                {
+                    chargeTime = 0;
+                    formationManager.ChargeChamberedCaptain();
+                }
+
+                yield return null;
+            }
         }
 
         public void EnableAimMode()
@@ -84,6 +87,10 @@ namespace WK
 
             isAimModeEnabled = true;
             aimReticle.SetActive(true);
+
+            // Start charging
+            chargingCoroutine = StartCoroutine(ChargeActiveCaptain());
+
             OnEnterAimMode?.Invoke();
         }
 
@@ -95,8 +102,8 @@ namespace WK
             isChambered = false;
             isAimModeEnabled = false;
             aimReticle.SetActive(false);
-            activeFollower.ProjectileBehavior.Clear();
-            activeFollower = null;
+            activeCaptain.ProjectileBehavior.Clear();
+            activeCaptain = null;
             OnExitAimMode?.Invoke();
         }
 
@@ -105,8 +112,11 @@ namespace WK
             if (!isChambered) return;
             if (!isAimModeEnabled) return;
 
-            activeFollower.FormationParent = null;
-            activeFollower.ProjectileBehavior.Launch();            
+            // Stop charging
+            StopCoroutine(chargingCoroutine);
+
+            activeCaptain.DetachFromFormationParent();
+            activeCaptain.ProjectileBehavior.Launch();
         }
       
         private void SetAimPosition(Vector2 cursorPosition)
@@ -117,10 +127,10 @@ namespace WK
             if (Physics.Raycast(ray, out hit, float.MaxValue, layerMask))
             {
                 aimReticle.transform.position = new Vector3(hit.point.x, 0.01f, hit.point.z);
-                activeFollower.ProjectileBehavior.CalculatePath(transform.position, hit.point);
+                activeCaptain.ProjectileBehavior.CalculatePath(transform.position, hit.point);
                 if (showTrajectory) 
                 {
-                    activeFollower.ProjectileBehavior.DrawPath();
+                    activeCaptain.ProjectileBehavior.DrawPath();
                 }
             }
         }
